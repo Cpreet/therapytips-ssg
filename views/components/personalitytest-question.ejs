@@ -1,0 +1,204 @@
+<div class="rounded-lg p-4 bg-white">
+    <div class="mb-3">
+        <h3 class="text-base font-medium text-(--therapy-tips-text)">
+            <%= questionIndex + 1 %>. <%= question %>
+        </h3>
+    </div>
+
+    <div class="hidden md:flex flex-wrap gap-1 justify-start">
+        <label class="cursor-pointer">
+            <input type="radio" name="question_<%= questionIndex %>" value="1" class="peer sr-only" required>
+            <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                    peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                    peer-checked:text-white hover:border-(--therapy-tips) 
+                    transition-all duration-100 cursor-pointer">
+                Strongly Disagree
+            </div>
+        </label>
+
+        <label class="cursor-pointer">
+            <input type="radio" name="question_<%= questionIndex %>" value="2" class="peer sr-only" required>
+            <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                    peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                    peer-checked:text-white hover:border-(--therapy-tips) 
+                    transition-all duration-100 cursor-pointer">
+                Disagree
+            </div>
+        </label>
+
+        <label class="cursor-pointer">
+            <input type="radio" name="question_<%= questionIndex %>" value="3" class="peer sr-only" required>
+            <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                    peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                    peer-checked:text-white hover:border-(--therapy-tips) 
+                    transition-all duration-100 cursor-pointer">
+                Neutral
+            </div>
+        </label>
+
+        <label class="cursor-pointer">
+            <input type="radio" name="question_<%= questionIndex %>" value="4" class="peer sr-only" required>
+            <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                    peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                    peer-checked:text-white hover:border-(--therapy-tips) 
+                    transition-all duration-100 cursor-pointer">
+                Agree
+            </div>
+        </label>
+
+        <label class="cursor-pointer">
+            <input type="radio" name="question_<%= questionIndex %>" value="5" class="peer sr-only" required>
+            <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                    peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                    peer-checked:text-white hover:border-(--therapy-tips) 
+                    transition-all duration-100 cursor-pointer">
+                Strongly Agree
+            </div>
+        </label>
+    </div>
+
+    <div class="flex flex-col gap-2 md:hidden">
+        <div class="relative">
+            <input type="hidden" name="question_<%= questionIndex %>" id="question_<%= questionIndex %>_input" required>
+
+            <div class="custom-dropdown" data-question="<%= questionIndex %>">
+                <button type="button" class="custom-dropdown-button w-full px-4 py-2 pr-10 rounded-md border-1 border-(--therapy-tips) open:border-b-0
+                                   text-lg font-medium text-gray-400 bg-white
+                                   hover:border-(--therapy-tips) focus:outline-none focus:border-(--therapy-tips) 
+                                   text-left cursor-pointer transition-colors">
+                    <span class="dropdown-selected-text">Select</span>
+                </button>
+
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg class="dropdown-arrow size-10 text-(--therapy-tips) transition-transform duration-200"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+
+                <div class="dropdown-list absolute top-full left-0 right-0 bg-white border-1 border-(--therapy-tips) border-t-0
+                               rounded-b-lg shadow-lg z-10 hidden max-h-60 overflow-y-auto">
+                    <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                        data-value="1">Strongly Disagree</div>
+                    <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-gray-100 hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                        data-value="2">Disagree</div>
+                    <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                        data-value="3">Neutral</div>
+                    <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-gray-100 hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                        data-value="4">Agree</div>
+                    <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                        data-value="5">Strongly Agree</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            (function () {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initDropdown);
+                } else {
+                    initDropdown();
+                }
+
+                function initDropdown() {
+                    const dropdown = document.querySelector('.custom-dropdown[data-question="<%= questionIndex %>"]');
+                    if (!dropdown) return;
+
+                    const button = dropdown.querySelector('.custom-dropdown-button');
+                    const list = dropdown.querySelector('.dropdown-list');
+                    const selectedText = dropdown.querySelector('.dropdown-selected-text');
+                    const arrow = dropdown.querySelector('.dropdown-arrow');
+                    const hiddenInput = document.getElementById('question_<%= questionIndex %>_input');
+                    const options = dropdown.querySelectorAll('.dropdown-option');
+
+                    // Toggle dropdown
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        console.log('Button clicked for question <%= questionIndex %>'); // Debug log
+
+                        // Close other dropdowns
+                        document.querySelectorAll('.dropdown-list').forEach(otherList => {
+                            if (otherList !== list) {
+                                otherList.classList.add('hidden');
+                                const otherDropdown = otherList.closest('.custom-dropdown');
+                                if (otherDropdown) {
+                                    otherDropdown.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                                    otherDropdown.querySelector('.custom-dropdown-button').classList.remove('rounded-b-none');
+                                }
+                            }
+                        });
+
+                        // Toggle current dropdown
+                        const isHidden = list.classList.contains('hidden');
+                        list.classList.toggle('hidden');
+                        arrow.classList.toggle('rotate-180');
+
+                        // Adjust button border radius when dropdown is open
+                        if (isHidden) {
+                            button.classList.add('rounded-b-none');
+                        } else {
+                            button.classList.remove('rounded-b-none');
+                        }
+                    });
+
+                    // Handle option selection
+                    options.forEach(option => {
+                        option.addEventListener('click', function (e) {
+                            e.stopPropagation();
+
+                            const value = this.dataset.value;
+                            const text = this.textContent;
+
+                            console.log('Option selected:', value, text); // Debug log
+
+                            // Update hidden input
+                            hiddenInput.value = value;
+
+                            // Update button text and styling
+                            selectedText.textContent = text;
+                            button.classList.remove('text-gray-400');
+                            button.classList.add('text-(--therapy-tips-text)');
+
+                            // Highlight selected option
+                            options.forEach(opt => {
+                                opt.classList.remove('bg-(--therapy-tips)', 'text-white');
+                                if (opt.dataset.value === '1' || opt.dataset.value === '3' || opt.dataset.value === '5') {
+                                    opt.classList.add('bg-white');
+                                } else {
+                                    opt.classList.add('bg-gray-100');
+                                }
+                            });
+
+                            this.classList.add('bg-(--therapy-tips)', 'text-white');
+                            this.classList.remove('bg-white', 'bg-gray-100');
+
+                            // Close dropdown
+                            list.classList.add('hidden');
+                            arrow.classList.remove('rotate-180');
+                            button.classList.remove('rounded-b-none');
+                        });
+                    });
+
+                    // Close dropdown when clicking outside (only add once per page)
+                    if (!window.dropdownClickHandlerAdded) {
+                        document.addEventListener('click', function (e) {
+                            if (!e.target.closest('.custom-dropdown')) {
+                                document.querySelectorAll('.dropdown-list').forEach(list => {
+                                    list.classList.add('hidden');
+                                    const dropdown = list.closest('.custom-dropdown');
+                                    if (dropdown) {
+                                        dropdown.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                                        dropdown.querySelector('.custom-dropdown-button').classList.remove('rounded-b-none');
+                                    }
+                                });
+                            }
+                        });
+                        window.dropdownClickHandlerAdded = true;
+                    }
+                }
+            })();
+        </script>
+    </div>
+</div>

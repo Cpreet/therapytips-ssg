@@ -1,0 +1,81 @@
+<details class="rounded-2xl overflow-hidden group transition-shadow duration-300">
+  <summary class="flex items-center gap-2 py-2 bg-gradient-to-r from-white to-gray-50/50 cursor-pointer hover:from-gray-50/30 hover:to-gray-50/70 transition-all duration-300">
+    <div class="flex items-center gap-4 flex-1">
+      <% if (imageUrl.trim()) { %>
+        <div class="relative">
+          <img src="<%= imageUrl.trim() %>" alt="<%= authorName %>"
+            class="size-16 rounded-full object-cover border-3 border-(--therapy-tips)/20 shadow-sm" />
+        </div>
+      <% } else { %>
+        <div class="relative">
+          <div class="absolute -top-1 -right-1 w-5 h-5 bg-(--therapy-tips) rounded-full flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+        </div>
+      <% } %>
+      
+      <div class="flex-1 flex flex-col gap-1">
+        <h3 class="text-sm font-semibold text-(--therapy-tips-text)">
+          By <%= authorName %>
+        </h3>
+        <p class="text-xs text-gray-600">
+          <%= new Date(publicationDate.trim()).toLocaleDateString("en-US", { 
+            year: "numeric", 
+            month: "long", 
+            day: "numeric" 
+          }) %>
+        </p>
+        <!-- <p class="text-xs text-gray-600">
+          Tap to learn more about <%#= authorName.trim().split(' ')?.[0] %>
+        </p> -->
+      </div>
+    </div>
+    
+    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-(--therapy-tips)/10 transition-all duration-300 group-hover:bg-(--therapy-tips)/20">
+      <svg class="w-5 h-5 text-(--therapy-tips) transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </div>
+  </summary>
+  
+  <div class="">
+    <div class="mb-2">
+      <div class="pt-2 mb-2 prose prose-base max-w-[160ch] text-start prose-(--therapy-tips-text)
+        prose-a:text-(--therapy-tips) prose-a:underline-offset-2
+        prose-a:underline prose-a:decoration-fuchsia-950/35
+        prose-a:decoration-2 prose-a:decoration-dotted
+        prose-a:decoration-offset-2
+        prose-p:text-(--therapy-tips-text)
+        prose-strong:text-(--therapy-tips)">
+          <%- markdownToSanitizedHtml(authorBio) %>
+      </div>
+      
+      <div class="flex gap-3">
+        <a href="#" class="flex-1 group/btn bg-white hover:bg-(--therapy-tips) border border-(--therapy-tips) rounded-xl px-4 py-3 text-center transition-all duration-300 shadow-sm hover:shadow-md">
+          <div class="flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-(--therapy-tips) group-hover/btn:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span class="text-sm font-medium text-(--therapy-tips) group-hover/btn:text-white transition-colors">
+              Send Message
+            </span>
+          </div>
+        </a>
+        
+        
+        <a href="#" class="flex-1 group/btn bg-white hover:bg-(--therapy-tips) border border-(--therapy-tips) rounded-xl px-4 py-3 text-center transition-all duration-300 shadow-sm hover:shadow-md">
+          <div class="flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-(--therapy-tips) group-hover/btn:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span class="text-sm font-medium text-(--therapy-tips) group-hover/btn:text-white transition-colors">
+              Schedule Now
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</details>

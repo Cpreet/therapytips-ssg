@@ -1,0 +1,145 @@
+<div class="bg-white border border-fuchsia-200 rounded-lg p-6 mt-6">
+    <div class="text-center mb-6">
+        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-fuchsia-400 to-pink-500 rounded-full flex items-center justify-center">
+            <img src="https://unpkg.com/lucide-static@latest/icons/award.svg" 
+                 class="size-10 text-white" />
+        </div>
+        <h3 class="text-2xl font-bold text-(--therapy-tips) mb-2">Your Results</h3>
+        <div class="text-4xl font-bold text-(--therapy-tips) mb-2">
+            <%= results.averageScore.toFixed(1) %>/7
+        </div>
+        <div class="text-lg font-semibold text-(--therapy-tips-text)">
+            <%= results.level %> <%= results.testName %>
+        </div>
+    </div>
+
+    <div class="space-y-6">
+        <div class="bg-fuchsia-50 rounded-lg p-4">
+            <h4 class="font-bold text-(--therapy-tips) mb-2">
+                <img src="https://unpkg.com/lucide-static@latest/icons/lightbulb.svg" 
+                     class="size-5 inline mr-2" />
+                Interpretation
+            </h4>
+            <p class="text-(--therapy-tips-text) leading-relaxed">
+                <%= results.interpretation %>
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-fuchsia-400/10 rounded-lg p-4">
+                <h5 class="font-semibold text-(--therapy-tips) mb-3 flex items-center">
+                    <img src="https://unpkg.com/lucide-static@latest/icons/bar-chart-3.svg" 
+                         class="size-4 mr-2" />
+                    Score Breakdown
+                </h5>
+                <ul class="text-sm text-(--therapy-tips-text) space-y-2">
+                    <li class="flex justify-between">
+                        <span>Total Score:</span>
+                        <span class="font-medium"><%= results.totalScore %>/<%= results.maxScore %></span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Average Score:</span>
+                        <span class="font-medium"><%= results.averageScore.toFixed(2) %>/7</span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Questions Answered:</span>
+                        <span class="font-medium"><%= results.totalQuestions %></span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>Percentile:</span>
+                        <span class="font-medium"><%= results.percentile %>th</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-fuchsia-400/10 rounded-lg p-4">
+                <h5 class="font-semibold text-(--therapy-tips) mb-3 flex items-center">
+                    <img src="https://unpkg.com/lucide-static@latest/icons/target.svg" 
+                         class="size-4 mr-2" />
+                    Areas for Growth
+                </h5>
+                <ul class="text-sm text-(--therapy-tips-text) space-y-1">
+                    <% results.recommendations.forEach(recommendation => { %>
+                        <li class="flex items-start">
+                            <span class="text-fuchsia-400 mr-2">•</span>
+                            <%= recommendation %>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-fuchsia-950/10 pt-4">
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button onclick="shareResults()" 
+                        class="flex items-center justify-center gap-2 px-6 py-2 
+                               border border-(--therapy-tips) text-(--therapy-tips) rounded-lg 
+                               hover:bg-(--therapy-tips) hover:text-white transition-all duration-150">
+                    <img src="https://unpkg.com/lucide-static@latest/icons/share-2.svg" 
+                         class="size-4" />
+                    Share Results
+                </button>
+                
+                <button onclick="retakeTest()" 
+                        class="flex items-center justify-center gap-2 px-6 py-2 
+                               bg-(--therapy-tips) text-white rounded-lg 
+                               hover:bg-fuchsia-600 transition-all duration-150">
+                    <img src="https://unpkg.com/lucide-static@latest/icons/refresh-cw.svg" 
+                         class="size-4" />
+                    Retake Test
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function shareResults() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'My <%= results.testName %> Results',
+            text: 'I scored <%= results.averageScore.toFixed(1) %>/7 on the <%= results.testName %>! Take the test yourself:',
+            url: window.location.href
+        });
+    } else {
+        // Fallback for browsers that don't support Web Share API
+        const resultText = `I scored <%= results.averageScore.toFixed(1) %>/7 on the <%= results.testName %>! Take the test yourself: ${window.location.href}`;
+        
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(resultText).then(() => {
+                alert('Results copied to clipboard!');
+            });
+        } else {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = resultText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Results copied to clipboard!');
+        }
+    }
+}
+
+function retakeTest() {
+    if (confirm('Are you sure you want to retake the test? Your current results will be lost.')) {
+        // Reset form
+        document.getElementById('personality-test-form').reset();
+        
+        // Hide results
+        document.getElementById('test-results').classList.add('hidden');
+        
+        // Scroll back to top of form
+        document.getElementById('personality-test-form').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+        
+        // Update progress
+        if (typeof updateProgress === 'function') {
+            updateProgress();
+        }
+    }
+}
+</script> 

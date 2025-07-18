@@ -1,0 +1,92 @@
+<header class="flex flex-col items-center justify-center w-full lg:p-0">
+    <div class="hidden lg:flex flex-col items-center justify-center w-full">
+        <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>">
+            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/TherapyTips-logo.svg" alt="TherapyTips" width="250" class="my-2 mx-auto" />
+        </a>
+        <nav
+            class="flex items-center justify-center gap-10 max-h-20 px-10 py-2 bg-(--therapy-tips) w-full text-white text-sm">
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>" class="hover:underline <%= page === 'landing' ? 'underline underline-offset-2 font-bold' : '' %>">
+                Home
+            </a>
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>articles" class="hover:underline <%= page === 'articles' ? 'underline underline-offset-2 font-bold' : '' %>">
+                Articles
+            </a>
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>interviews" class="hover:underline <%= page === 'interviews' ? 'underline underline-offset-2 font-bold' : '' %>">
+                Interviews
+            </a>
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>advice" class="hover:underline <%= page === 'advice' ? 'underline underline-offset-2 font-bold' : '' %>">
+                Advice
+            </a>
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>personality-tests" class="hover:underline <%= page === 'personality-tests' ? 'underline underline-offset-2 font-bold' : '' %>">
+                Personality Tests
+            </a>
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>mental-health-topics-a-z"
+                class="hover:underline">
+                Mental Health Topics
+            </a>
+            <a href="https://www.awake-therapy.me/schedule-an-initial-consultation" class="hover:underline">
+                Find a Therapist
+            </a>
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>search" class="hover:underline">
+                <img class="size-4 mb-0.5 bg-white mask-[url('https://unpkg.com/lucide-static@latest/icons/search.svg')] mask-center mask-contain mask-no-repeat" />
+            </a>
+        </nav>
+    </div>
+    <div
+        class="lg:hidden flex items-center justify-between h-12 w-full p-4 sticky top-0 bg-white sm:bg-(--therapy-tips) z-50">
+        <img class="size-6 mt-1 bg-white sm:bg-(--therapy-tips) 
+            mask-[url('https://unpkg.com/lucide-static@latest/icons/menu.svg')] mask-center mask-contain mask-no-repeat" 
+        />
+        <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>">
+            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/TherapyTips-logo.svg" alt="TherapyTips" width="250" class="block sm:hidden" />
+            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/therapytips-inverted.svg" alt="TherapyTips" width="250" class="hidden sm:block" />
+        </a>
+        <div class="relative text-left">
+            <input type="checkbox" id="menu-toggle" class="hidden peer" />
+            <label for="menu-toggle" class="inline-flex justify-between w-full rounded-md border py-2 text-[var(--therapy-tips)] text-sm font-medium outline-none border-none 
+          hover:cursor-pointer focus:outline-none">
+                <img class="size-6 mt-1 bg-(--therapy-tips) sm:bg-white mask-[url('https://unpkg.com/lucide-static@latest/icons/menu.svg')] mask-center mask-contain mask-no-repeat" />
+            </label>
+
+            <nav class="absolute right-0 w-60 mt-1 origin-top-right bg-white divide-y divide-[var(--therapy-tips)]/40 rounded-md shadow-lg 
+        opacity-0 invisible peer-checked:opacity-100 peer-checked:visible transition-all dur--ation-100 
+        ease-in-out transform scale-95 peer-checked:scale-100 z-50 overflow-hidden border border-[var(--therapy-tips)]/40">
+                <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
+                    Home
+                </a>
+                <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>articles"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
+                    Articles
+                </a>
+                <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>interviews"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
+                    Interviews
+                </a>
+                <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>advice"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
+                    Advice
+                </a>
+                <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>personality-tests"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
+                    Personality Tests
+                </a>
+                <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>mental-health-topics-a-z"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
+                    Mental Health Topics
+                </a>
+                <a href="https://www.awake-therapy.me/schedule-an-initial-consultation"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
+                    Find a Therapist
+                </a>
+                <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>search"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
+                    <span class="flex items-center gap-2">
+                        <img src="https://unpkg.com/lucide-static@latest/icons/search.svg" class="size-3.5" />
+                        Search
+                    </span>
+                </a>
+            </nav>
+        </div>
+    </div>
+</header>

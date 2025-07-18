@@ -1,0 +1,53 @@
+<div class="mt-8 pt-6 border-t border-fuchsia-950/10">
+    <div class="text-center space-y-4">
+        <div id="progress-indicator" class="mb-4">
+            <div class="flex items-center justify-center space-x-2 text-sm text-(--therapy-tips-text) mb-2">
+                <img src="https://unpkg.com/lucide-static@latest/icons/check-circle.svg"
+                     class="size-4" />
+                <span id="progress-text">0 of <%= questions.length %> questions answered</span>
+            </div>
+            <div class="w-full bg-fuchsia-100 rounded-full h-2">
+                <div id="progress-bar" 
+                     class="bg-(--therapy-tips) h-2 rounded-full transition-all duration-300" 
+                     style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('personality-test-form');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const submitButton = document.getElementById('submit-button');
+    const totalQuestions = questions.length;
+    
+    function updateProgress() {
+        const answeredQuestions = form.querySelectorAll('input[type="radio"]:checked').length;
+        const percentage = (answeredQuestions / totalQuestions) * 100;
+        
+        progressBar.style.width = percentage + '%';
+        progressText.textContent = `${answeredQuestions} of ${totalQuestions} questions answered`;
+        
+        // Enable submit button only when all questions are answered
+        if (answeredQuestions === totalQuestions) {
+            submitButton.disabled = false;
+            submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+    }
+    
+    // Listen for changes to radio buttons
+    form.addEventListener('change', function(e) {
+        if (e.target.type === 'radio') {
+            updateProgress();
+        }
+    });
+    
+    // Initial progress update
+    updateProgress();
+});
+</script> 

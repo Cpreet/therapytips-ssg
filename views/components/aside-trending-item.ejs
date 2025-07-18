@@ -1,0 +1,61 @@
+<div class="w-full">
+    <ol class="gap-1 xl:gap-6 hidden md:flex flex-col">
+        <% for (const [idx, item] of items.entries()) { %>
+        <li>
+            <a href="<%= item.link %>">
+                <div class="flex items-end gap-2 font-normal font-(family-name:--font-amaranth) py-2 
+              transition-all duration-100 group hover:cursor-pointer
+              ">
+                    <span class="text-4xl font-extralight"><%= idx + 1 %>.</span>
+                    <div class="flex flex-col font-sans ml-2 text-(--therapy-tips-text)">
+                        <h2 class="text-sm font-bold line-clamp-1 group-hover:underline">
+                            <%= item.title %>
+                        </h2>
+                        <p class="text-xs font-normal flex items-center gap-1 group-hover:underline">
+                            <img class="mask-[url(https://unpkg.com/lucide-static@latest/icons/trending-up.svg)] bg-(--therapy-tips-text) mask-center mask-contain mask-no-repeat
+                            size-4" />
+                            <%= item.views %> views this month
+                            <img src="https://unpkg.com/lucide-static@latest/icons/chevron-right.svg" class="size-4 opacity-0 
+                    group-hover:opacity-100 group-hover:translate-x-2 transfrom
+                    transition-all duration-100
+                    " />
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <% } %>
+    </ol>
+    <div
+        class="hidden flex-col gap-2 px-8 bg-(--therapy-tips-accent)/35 group-open/details:opacity-100 group-default/details:opacity-0 transition-all duration-300">
+        <ol class="carousel carousel-center p-4 space-x-4 bg-white rounded-box mx-4.5">
+            <% for (const [idx, item] of items.entries()) { %>
+            <li class="py-2">
+                <a href="<%= item.link %>">
+                    <div class="flex items-center justify-start p-2 font-sans group">
+                        <div class="flex items-center gap-2 text-(--therapy-tips) pb-2 pl-4">
+                            <span class="text-4xl font-(family-name:--font-amaranth)">
+                                <%= idx + 1 %>.
+                            </span>
+                            <div class="flex text-(--therapy-tips-text) flex-col font-(family-name:--font-avenir)">
+                                <h2 class="text-sm font-bold text-wrap group-hover:underline">
+                                    <%= item.title %>
+                                </h2>
+                                <p
+                                    class="text-2xs font-normal flex items-center gap-1 text-wrap group-hover:underline">
+                                    <%= item.views %> views this month
+                                    <img class="mask-[url(https://unpkg.com/lucide-static@latest/icons/trending-up.svg)] bg-(--therapy-tips-text) mask-center mask-contain mask-no-repeat
+                                    size-4" />
+                                </p>
+                            </div>
+                            <img src="https://unpkg.com/lucide-static@latest/icons/chevron-right.svg" class="size-4 opacity-0 
+                    group-hover:opacity-100 group-hover:translate-x-2 transfrom
+                    transition-all duration-100" />
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <% } %>
+        </ol>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+<aside class="flex flex-col gap-6 text-(--therapy-tips)">
+    <div class="hidden md:flex flex-col gap-4">
+      <h1 class="text-4xl font-(family-name:--font-amaranth) font-bold tracking-wider">
+        NEW VIDEOS
+      </h1>
+      <div class="flex flex-col gap-4">
+        <% for (const data of ytDataArr) { %>
+          <div
+            class="flex flex-col bg-(--therapy-tips)/22 rounded-lg overflow-hidden
+            group hover:bg-(--therapy-tips) transition-all duration-100
+          "
+          >
+            <a
+              href="https://www.youtube.com/watch?v=<%= data.items[0].id %>"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="aspect-video relative"
+            >
+              <img
+                src="<%= data.items[0].snippet.thumbnails.medium.url %>"
+                alt="<%= data.items[0].snippet.title %>"
+                class="w-full h-full object-cover rounded-t-lg"
+              />
+              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div
+                  class="
+                  w-10 h-10 bg-gray-500/50 group-hover:bg-red-600 rounded-full
+                  transition-all duration-100
+                "
+                >
+                  <span
+                    class="
+                    w-[101%] h-[98%] flex items-center justify-center m-[3px]
+                    before:content-[''] before:z-10 before:w-0 before:h-0 
+                    before:border-l-15 before:border-l-white 
+                    before:border-t-10 before:border-t-transparent
+                    before:border-b-10 before:border-b-transparent
+                    before:transition-all before:duration-100
+                  "
+                  />
+                </div>
+              </div>
+            </a>
+            <span class="flex items-center p-2">
+              <p
+                class="text-sm font-bold text-(--therapy-tips) line-clamp-2 text-center 
+              group-hover:text-white group-hover:cursor-pointer transition-all duration-100"
+              >
+                <%= ytDataArr[0].items[0].snippet.title %>
+              </p>
+            </span>
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="flex md:hidden flex-col mt-3 w-full">
+      <div class="flex flex-col gap-3 items-center w-full">
+        <% for (const data of ytDataArr) { %>
+          <div
+            class="flex flex-col gap-2 group w-full
+            bg-(--therapy-tips)/22 overflow-hidden
+            hover:bg-(--therapy-tips) transition-all duration-100
+            rounded-lg
+            "
+          >
+            <a
+              href="https://www.youtube.com/watch?v=<%= data.items[0].id %>"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="relative"
+            >
+              <img
+                src="<%= data.items[0].snippet.thumbnails.medium.url %>"
+                alt="<%= data.items[0].snippet.title %>"
+                class="w-full h-full object-cover relative"
+              />
+              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div
+                  class="
+                  w-10 h-10 bg-gray-500/50 group-hover:bg-red-600 rounded-full
+                  transition-all duration-100
+                "
+                >
+                  <span
+                    class="
+                    w-[101%] h-[98%] flex items-center justify-center m-[3px]
+                before:content-[''] before:z-10 before:w-0 before:h-0 
+                before:border-l-15 before:border-l-white 
+                before:border-t-10 before:border-t-transparent
+                before:border-b-10 before:border-b-transparent
+                before:transition-all before:duration-100
+                "
+                  />
+                </div>
+              </div>
+            </a>
+            <span class="flex items-center p-2 w-full">
+              <p
+                class="text-sm font-bold text-fuchsia-900 line-clamp-2
+              text-wrap group-hover:text-white group-hover:cursor-pointer transition-all duration-100
+              "
+              >
+                <%= data.items[0].snippet.title %>
+              </p>
+            </span>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </aside>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= article.title %></title>
+    <meta name="description" content="<%= article.subtitle %>">
+    <meta name="author" content="<%= author.name.trim() %>">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %><%= article.slug.trim() %>">
+    
+    <!-- Favicon and Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Stylesheets -->
+    <link rel="preload" href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>style.css" as="style">
+    <link rel="stylesheet" href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>style.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7186632191667750" crossorigin="anonymous"></script>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "<%= process.env.BASE_URL %><%= article.slug.trim() %>"
+        },
+        "headline": "<%= article.title.trim() %>",
+        "image": [
+            "<%= process.env.BASE_URL%><%= article.hero_image_url.trim() %>",
+            "<%= process.env.BASE_URL%><%= article.hero_image_url.trim() %>",
+            "<%= process.env.BASE_URL%><%= article.hero_image_url.trim() %>"
+        ],
+        "datePublished": "<%= article.publication_date %>",
+        "dateModified": "<%= article.updated_at || article.publication_date %>",
+        "author": {
+            "@type": "Person",
+            "name": "<%= author.name.trim() %>"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Therapytips.org",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://therapytips.org/photos/therapytips-logo-amp-600x60.jpg"
+            }
+        }
+    }
+    </script>
+    
+    <!-- Social Media Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@awake_therapy">
+    <meta name="twitter:creator" content="@awake_therapy">
+    <meta property="fb:app_id" content="3642288145876307">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:url" content="<%= process.env.BASE_URL %><%= article.slug %>">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="<%= article.title %>">
+    <meta property="og:description" content="<%= article.subtitle %>">
+    <meta property="og:image" content="<%= article.hero_image_url %>">
+    <meta property="og:site_name" content="Therapytips.org">
+    
+    <!-- Google Analytics & Tag Manager Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8W1FCM72H7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8W1FCM72H7');
+    </script>
+</head>
+</head>
+
+<body>
+    <div class="flex flex-col max-w-[940px] xl:max-w-[1200px] md:m-4 lg:mx-auto border rounded-lg shadow-lg bg-white">
+        <%- include('components/header', { page: '' }) %>
+        <main class="flex py-2 md:py-6 w-full">
+            <div class="flex flex-col w-full gap-4 md:gap-8 md:px-4 px-2">
+                <div class="relative flex flex-col gap-2 rounded-lg overflow-hidden no-ads">
+                    <img src="<%= article.hero_image_url %>" alt="<%= article.title %>" />
+                    <h1 class="absolute bottom-10 left-0 w-full text-2xl md:text-4xl 
+                        font-bold text-white text-center bg-fuchsia-400/60 py-5 px-2
+                        backdrop-blur-xs text-shadow-sm text-shadow-zinc-700 no-ads">
+                        <%= article.title %>
+                    </h1>
+                </div>
+                <div class="px-10 py-4">
+                    <h2 class="text-base font-bold md:text-xl text-(--therapy-tips) text-justify mb-4">
+                        <%= article.subtitle %>
+                    </h2>
+                    <div class="mb-4">
+                        <%- include('components/author-tag.ejs', { 
+                            imageUrl: author.image_url.trim(), 
+                            authorName: author.name.trim(),
+                            authorBio: author.bio.trim(),
+                            publicationDate: article.publication_date.trim() 
+                        }) %>
+                        </div>
+                    <div class="prose prose-base max-w-[160ch] text-start prose-(--therapy-tips-text)
+                        prose-a:text-(--therapy-tips) prose-a:underline-offset-2
+                        prose-a:underline prose-a:decoration-fuchsia-950/35
+                        prose-a:decoration-2 prose-a:decoration-dotted
+                        prose-a:decoration-offset-2
+                        prose-headings:text-(--therapy-tips-text) prose-headings:font-bold
+                        prose-p:text-(--therapy-tips-text)
+                        prose-li:text-(--therapy-tips-text)
+                        marker:text-(--therapy-tips)
+                        prose-strong:text-(--therapy-tips)
+                        ">
+                        <%- markdownToSanitizedHtml(article.content) %>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden md:flex w-2/5 xl:w-1/3">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 w-px bg-fuchsia-950/35"></div>
+                </div>
+                <div class="flex flex-col gap-8 md:px-4">
+                    <%- include('components/aside-trending.ejs') %>
+                    <span class="h-px bg-fuchsia-950/35"></span>
+                    <%- include('components/aside-journal.ejs') %>
+                    <span class="h-px bg-fuchsia-950/35"></span>
+                    <%- include('components/aside-videos.ejs') %>
+                    <span class="h-px bg-fuchsia-950/35"></span>
+                    <%- include('components/cta-bmc.ejs') %>
+                    <span class="h-px bg-fuchsia-950/35"></span>
+                    <%- include('components/cta-further-reading.ejs') %>
+                    <!-- <span class="h-px bg-fuchsia-950/35"></span>
+                    <%#- include('components/cta-book-appointment.ejs') %> -->
+                </div>
+            </div>
+        </main>
+        <%- include('components/footer.ejs') %>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapytips.org - Your Guide To A Happier Future</title>
+    <meta name="description" content="Therapytips.org is the news and publishing division of Awake Therapy, a telehealth company that provides online therapy, counseling, and mental health services to individuals, couples, and families in over 40 countries worldwide.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://therapytips.org">
+    
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="KfJfCXMzMEdacMlLVynzjIFQ3ozpdMNFbYUOBMg39fg" />
+    
+    <!-- Favicon and Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>style.css">
+    <link rel="preload" href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>style.css" as="style">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7186632191667750" crossorigin="anonymous"></script>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:site_name" content="Therapytips.org - Your Guide To A Happier Future" />
+    <meta property="og:url" content="https://therapytips.org" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Therapytips.org is the news and publishing division of Awake Therapy, a telehealth company that provides online therapy, counseling, and mental health services to individuals, couples, and families in over 40 countries worldwide." />
+    
+    <!-- Google Analytics & Tag Manager Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8W1FCM72H7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8W1FCM72H7');
+    </script>
+</head>
+
+<body>
+    <div class="flex flex-col max-w-[940px] xl:max-w-[1200px] md:m-4 lg:mx-auto border rounded-lg shadow-lg bg-white">
+        <%- include('components/header', { page: page }) %>
+            <div class="md:hidden mb-4">
+                <%- include('components/hero') %>
+            </div>
+            <main class="flex w-full my-4 lg:my-6">
+                <div class="flex flex-col w-full md:mx-4">
+                    <div class="hidden md:block">
+                        <%- include('components/hero') %>
+                    </div>
+                    <div class="block md:hidden">   
+                        <%- include('components/aside-trending-item', { items: items }) %>
+                    </div>
+                    <div class="flex flex-col gap-0.5 mx-8 md:mx-0">
+                        <%- include('components/section-articles') %>
+                        <div class="block md:hidden">   
+                            <%- include('components/cta-bmc') %>
+                        </div>
+                        <%- include('components/section-personalitytests') %>
+                        <%- include('components/section-interviews') %>
+                        <%- include('components/section-advice') %>
+                    </div>
+                </div>
+                <%- include('components/aside') %>
+            </main>
+            <%- include('components/footer') %>
+    </div>
+</body>
+
+</html>

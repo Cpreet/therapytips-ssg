@@ -1,0 +1,16 @@
+<section class="flex flex-col items-center my-2 md:mt-2">
+    <div class="hidden md:flex flex-col gap-2 w-full">
+        <div class="grid grid-cols-2 gap-4 w-full">
+            <% for (const item of interviews) { %>
+                <%- include('article-card', { article: item }) %>
+            <% } %>
+        </div>
+    </div>
+    <div class="flex flex-col md:hidden">
+        <div class="grid grid-cols-1 gap-3 w-full">
+            <% for (const item of interviews) { %>
+                <%- include('article-card', { article: item }) %>
+            <% } %>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,54 @@
+<footer class="flex flex-col items-center justify-center overflow-hidden bg-(--therapy-tips-accent)/35 rounded-t-[40px] md:rounded-t-[40px]
+">
+    <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/TherapyTips-logo.svg" alt="Therapytips" class="mt-8 block md:hidden" width="320" height="80" />
+    <div class="flex flex-col md:flex-row w-full text-fuchsia-950 items-center justify-center 
+  gap-8 my-8 md:gap-16 md:px-12">
+        <a href="https://www.buymeacoffee.com/marktravers" target="_blank"
+            class="hidden md:flex flex-col items-center justify-center gap-2 w-1/3 hover:cursor-pointer">
+            <span class="text-sm text-(--therapy-tips-text)">Enjoying Our Content?</span>
+            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/bmc.png" alt="BMC" class="mb-2" width="220" />
+        </a>
+        <div class="flex flex-col items-center justify-center gap-2 md:w-1/3">
+            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/TherapyTips-logo.svg" alt="Therapytips" class="mb-2 hidden md:block" width="200" height="50" />
+            <p class="text-sm text-fuchsia-950 font-extralight text-center mx-12 md:mx-0">
+                <strong class="text-fuchsia-950 font-bold">
+                    Therapytips.org
+                </strong>
+                is the news and publishing division of
+                <strong class="text-fuchsia-950 font-bold">
+                    Awake Therapy
+                </strong>,
+                a telehealth company that provides
+                <strong class="text-fuchsia-950 font-bold">
+                    online psychotherapy, counseling, and coaching
+                </strong>
+                to individuals, couples, families and organizations
+                <strong class="text-fuchsia-950 font-bold">
+                    in over 40 countries worldwide.
+                </strong>
+            </p>
+        </div>
+        <a href="https://www.buymeacoffee.com/marktravers" target="_blank"
+            class="flex md:hidden flex-col items-center justify-center gap-2 hover:cursor-pointer">
+            <span class="text-fuchsia-950">Enjoying Our Content?</span>
+            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/bmc.png" alt="BMC" class="mb-2" width="220" />
+        </a>
+        <div class="text-sm text-(--therapy-tips-text)
+    hover:cursor-pointer text-center
+    flex flex-col items-center justify-center gap-2
+    md:w-1/3">
+            Speak to a mental health professional today.
+            <a href="https://www.awake-therapy.me/schedule-an-initial-consultation" target="_blank" class="flex items-center gap-2 justify-center w-fit mx-auto text-(--therapy-tips)
+    border-2 border-(--therapy-tips) py-2 px-2 lg:px-8 rounded-sm
+    hover:bg-(--therapy-tips) hover:text-white transition-all duration-100
+    active:bg-(--therapy-tips) active:text-white group
+    ">
+                SCHEDULE NOW
+                <img class="mask-[url(https://unpkg.com/lucide-static@latest/icons/chevron-right.svg)] bg-(--therapy-tips) group-hover:bg-white mask-center mask-contain mask-no-repeat size-5 mb-0.5" />
+            </a>
+        </div>
+    </div>
+    <p class="bg-(--therapy-tips) text-xs text-white font-extralight text-center py-2 w-full">
+        &copy; 2025 Psychology Solutions, Inc. All rights reserved.
+    </p>
+</footer>

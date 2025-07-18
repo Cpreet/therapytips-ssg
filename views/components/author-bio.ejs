@@ -1,0 +1,29 @@
+<div class="bg-fuchsia-50 rounded-lg border border-fuchsia-950/20 p-6 mt-8">
+  <h3 class="text-lg font-bold text-(--therapy-tips) mb-4">About the Author</h3>
+  
+  <div class="flex flex-col sm:flex-row gap-4">
+    <% if (imageUrl && imageUrl.trim()) { %>
+      <img src="<%= imageUrl.trim() %>" alt="<%= authorName %>" 
+           class="w-20 h-20 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-fuchsia-200 flex-shrink-0" />
+    <% } else { %>
+      <div class="w-20 h-20 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-fuchsia-400 to-pink-500 flex items-center justify-center flex-shrink-0">
+        <span class="text-white font-bold text-lg sm:text-base">
+          <%= authorName ? authorName.charAt(0).toUpperCase() : '?' %>
+        </span>
+      </div>
+    <% } %>
+    
+    <div class="flex-1">
+      <h4 class="font-semibold text-(--therapy-tips) mb-2"><%= authorName %></h4>
+      <% if (bio && bio.trim()) { %>
+        <p class="text-sm text-(--therapy-tips-text) leading-relaxed">
+          <%= bio.trim() %>
+        </p>
+      <% } else { %>
+        <p class="text-sm text-(--therapy-tips-text) italic">
+          No biography available for this author.
+        </p>
+      <% } %>
+    </div>
+  </div>
+</div> 

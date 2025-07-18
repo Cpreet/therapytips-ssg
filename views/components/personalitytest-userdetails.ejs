@@ -1,0 +1,719 @@
+    <h3 class="text-lg text-(--therapy-tips-text) font-medium mb-4">
+        <strong>Step 2:</strong> Enter your age, gender, region, and first name so we can provide you with a detailed report that
+        compares your test scores with people similar to you.
+    </h3>
+
+    <div class="space-y-4">
+        <div class="hidden md:block rounded-lg p-4 bg-white">
+            <div class="mb-3">
+                <h3 class="text-base font-medium text-(--therapy-tips-text)">
+                    What is your age?
+                </h3>
+            </div>
+
+            <div class="flex flex-wrap gap-1 justify-start">
+                <label class="cursor-pointer">
+                    <input type="radio" name="age" value="under_18" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Under 18
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="age" value="18_24" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        18-24
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="age" value="25_34" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        25-34
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="age" value="35_44" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        35-44
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="age" value="45_plus" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        45 and over
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-2 md:hidden">
+            <div class="mb-3">
+                <h3 class="text-base font-medium text-(--therapy-tips-text)">
+                    What is your age?
+                </h3>
+            </div>
+
+            <div class="relative">
+                <input type="hidden" name="age" id="age" required>
+    
+                <div class="age-dropdown">
+                    <button type="button" class="age-dropdown-button w-full px-4 py-2 pr-10 rounded-md border-1 border-(--therapy-tips) open:border-b-0
+                                       text-lg font-medium text-gray-400 bg-white
+                                       hover:border-(--therapy-tips) focus:outline-none focus:border-(--therapy-tips) 
+                                       text-left cursor-pointer transition-colors">
+                        <span class="dropdown-selected-text">Select</span>
+                    </button>
+    
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <svg class="dropdown-arrow size-10 text-(--therapy-tips) transition-transform duration-200"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+    
+                    <div class="dropdown-list absolute top-full left-0 right-0 bg-white border-1 border-(--therapy-tips) border-t-0
+                                   rounded-b-lg shadow-lg z-10 hidden max-h-60 overflow-y-auto">
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="under18">Under 18</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-gray-100 hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="18to24">18-24</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="25to34">25-34</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-gray-100 hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="35to44">35-44</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="45andover">45 and over</div>
+                    </div>
+                </div>
+            </div>
+    
+            <script>
+                (function () {
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initDropdown);
+                    } else {
+                        initDropdown();
+                    }
+    
+                    function initDropdown() {
+                        const dropdown = document.querySelector('.age-dropdown');
+                        if (!dropdown) return;
+    
+                        const button = dropdown.querySelector('.age-dropdown-button');
+                        const list = dropdown.querySelector('.dropdown-list');
+                        const selectedText = dropdown.querySelector('.dropdown-selected-text');
+                        const arrow = dropdown.querySelector('.dropdown-arrow');
+                        const hiddenInput = document.getElementById('age');
+                        const options = dropdown.querySelectorAll('.dropdown-option');
+    
+                        // Toggle dropdown
+                        button.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+    
+                            console.log('Button clicked for age'); // Debug log
+    
+                            // Close other dropdowns
+                            document.querySelectorAll('.dropdown-list').forEach(otherList => {
+                                if (otherList !== list) {
+                                    otherList.classList.add('hidden');
+                                    const otherDropdown = otherList.closest('.age-dropdown');
+                                    if (otherDropdown) {
+                                        otherDropdown.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                                        otherDropdown.querySelector('.age-dropdown-button').classList.remove('rounded-b-none');
+                                    }
+                                }
+                            });
+    
+                            // Toggle current dropdown
+                            const isHidden = list.classList.contains('hidden');
+                            list.classList.toggle('hidden');
+                            arrow.classList.toggle('rotate-180');
+    
+                            // Adjust button border radius when dropdown is open
+                            if (isHidden) {
+                                button.classList.add('rounded-b-none');
+                            } else {
+                                button.classList.remove('rounded-b-none');
+                            }
+                        });
+    
+                        // Handle option selection
+                        options.forEach(option => {
+                            option.addEventListener('click', function (e) {
+                                e.stopPropagation();
+    
+                                const value = this.dataset.value;
+                                const text = this.textContent;
+    
+                                console.log('Option selected:', value, text); // Debug log
+    
+                                // Update hidden input
+                                hiddenInput.value = value;
+    
+                                // Update button text and styling
+                                selectedText.textContent = text;
+                                button.classList.remove('text-gray-400');
+                                button.classList.add('text-(--therapy-tips-text)');
+    
+                                // Highlight selected option
+                                options.forEach(opt => {
+                                    opt.classList.remove('bg-(--therapy-tips)', 'text-white');
+                                    if (opt.dataset.value === '1' || opt.dataset.value === '3' || opt.dataset.value === '5') {
+                                        opt.classList.add('bg-white');
+                                    } else {
+                                        opt.classList.add('bg-gray-100');
+                                    }
+                                });
+    
+                                this.classList.add('bg-(--therapy-tips)', 'text-white');
+                                this.classList.remove('bg-white', 'bg-gray-100');
+    
+                                // Close dropdown
+                                list.classList.add('hidden');
+                                arrow.classList.remove('rotate-180');
+                                button.classList.remove('rounded-b-none');
+                            });
+                        });
+    
+                        // Close dropdown when clicking outside (only add once per page)
+                        if (!window.dropdownClickHandlerAdded) {
+                            document.addEventListener('click', function (e) {
+                                if (!e.target.closest('.age-dropdown')) {
+                                    document.querySelectorAll('.dropdown-list').forEach(list => {
+                                        list.classList.add('hidden');
+                                        const dropdown = list.closest('.age-dropdown');
+                                        if (dropdown) {
+                                            dropdown.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                                            dropdown.querySelector('.age-dropdown-button').classList.remove('rounded-b-none');
+                                        }
+                                    });
+                                }
+                            });
+                            window.dropdownClickHandlerAdded = true;
+                        }
+                    }
+                })();
+            </script>
+        </div>
+
+        <div class="hidden md:block rounded-lg p-4 bg-white">
+            <div class="mb-3">
+                <h3 class="text-base font-medium text-(--therapy-tips-text)">
+                    What is your gender?
+                </h3>
+            </div>
+
+            <div class="flex flex-wrap gap-1 justify-start">
+                <label class="cursor-pointer">
+                    <input type="radio" name="gender" value="male" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Male
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="gender" value="female" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Female
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="gender" value="non_binary" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Non-binary
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="gender" value="transgender" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Transgender
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="gender" value="other" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Other
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="flex md:hidden flex-col gap-2">
+            <div class="mb-3">
+                <h3 class="text-base font-medium text-(--therapy-tips-text)">
+                    What is your gender?
+                </h3>
+            </div>
+
+            <div class="relative">
+                <input type="hidden" name="gender" id="gender" required>
+    
+                <div class="gender-dropdown">
+                    <button type="button" class="gender-dropdown-button w-full px-4 py-2 pr-10 rounded-md border-1 border-(--therapy-tips) open:border-b-0
+                                       text-lg font-medium text-gray-400 bg-white
+                                       hover:border-(--therapy-tips) focus:outline-none focus:border-(--therapy-tips) 
+                                       text-left cursor-pointer transition-colors">
+                        <span class="dropdown-selected-text">Select</span>
+                    </button>
+    
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <svg class="dropdown-arrow size-10 text-(--therapy-tips) transition-transform duration-200"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+    
+                    <div class="dropdown-list absolute top-full left-0 right-0 bg-white border-1 border-(--therapy-tips) border-t-0
+                                   rounded-b-lg shadow-lg z-10 hidden max-h-60 overflow-y-auto">
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="male">Male</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-gray-100 hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="female">Female</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="nonbinary">Non-binary</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-gray-100 hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="transgender">Transgender</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="other">Other</div>
+                    </div>
+                </div>
+            </div>
+    
+            <script>
+                (function () {
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initDropdown);
+                    } else {
+                        initDropdown();
+                    }
+    
+                    function initDropdown() {
+                        const dropdown = document.querySelector('.gender-dropdown');
+                        if (!dropdown) return;
+    
+                        const button = dropdown.querySelector('.gender-dropdown-button');
+                        const list = dropdown.querySelector('.dropdown-list');
+                        const selectedText = dropdown.querySelector('.dropdown-selected-text');
+                        const arrow = dropdown.querySelector('.dropdown-arrow');
+                        const hiddenInput = document.getElementById('gender');
+                        const options = dropdown.querySelectorAll('.dropdown-option');
+    
+                        // Toggle dropdown
+                        button.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+    
+                            console.log('Button clicked for age'); // Debug log
+    
+                            // Close other dropdowns
+                            document.querySelectorAll('.dropdown-list').forEach(otherList => {
+                                if (otherList !== list) {
+                                    otherList.classList.add('hidden');
+                                    const otherDropdown = otherList.closest('.gender-dropdown');
+                                    if (otherDropdown) {
+                                        otherDropdown.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                                        otherDropdown.querySelector('.gender-dropdown-button').classList.remove('rounded-b-none');
+                                    }
+                                }
+                            });
+    
+                            // Toggle current dropdown
+                            const isHidden = list.classList.contains('hidden');
+                            list.classList.toggle('hidden');
+                            arrow.classList.toggle('rotate-180');
+    
+                            // Adjust button border radius when dropdown is open
+                            if (isHidden) {
+                                button.classList.add('rounded-b-none');
+                            } else {
+                                button.classList.remove('rounded-b-none');
+                            }
+                        });
+    
+                        // Handle option selection
+                        options.forEach(option => {
+                            option.addEventListener('click', function (e) {
+                                e.stopPropagation();
+    
+                                const value = this.dataset.value;
+                                const text = this.textContent;
+    
+                                console.log('Option selected:', value, text); // Debug log
+    
+                                // Update hidden input
+                                hiddenInput.value = value;
+    
+                                // Update button text and styling
+                                selectedText.textContent = text;
+                                button.classList.remove('text-gray-400');
+                                button.classList.add('text-(--therapy-tips-text)');
+    
+                                // Highlight selected option
+                                options.forEach(opt => {
+                                    opt.classList.remove('bg-(--therapy-tips)', 'text-white');
+                                    if (opt.dataset.value === '1' || opt.dataset.value === '3' || opt.dataset.value === '5') {
+                                        opt.classList.add('bg-white');
+                                    } else {
+                                        opt.classList.add('bg-gray-100');
+                                    }
+                                });
+    
+                                this.classList.add('bg-(--therapy-tips)', 'text-white');
+                                this.classList.remove('bg-white', 'bg-gray-100');
+    
+                                // Close dropdown
+                                list.classList.add('hidden');
+                                arrow.classList.remove('rotate-180');
+                                button.classList.remove('rounded-b-none');
+                            });
+                        });
+    
+                        // Close dropdown when clicking outside (only add once per page)
+                        if (!window.dropdownClickHandlerAdded) {
+                            document.addEventListener('click', function (e) {
+                                if (!e.target.closest('.gender-dropdown')) {
+                                    document.querySelectorAll('.dropdown-list').forEach(list => {
+                                        list.classList.add('hidden');
+                                        const dropdown = list.closest('.gender-dropdown');
+                                        if (dropdown) {
+                                            dropdown.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                                            dropdown.querySelector('.gender-dropdown-button').classList.remove('rounded-b-none');
+                                        }
+                                    });
+                                }
+                            });
+                            window.dropdownClickHandlerAdded = true;
+                        }
+                    }
+                })();
+            </script>
+        </div>
+
+        <div class="hidden md:block rounded-lg p-4 bg-white">
+            <div class="mb-3">
+                <h3 class="text-base font-medium text-(--therapy-tips-text)">
+                    What region of the world do you live in?
+                </h3>
+            </div>
+
+            <div class="flex flex-wrap gap-1 justify-start">
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="north_america" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        North America
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="europe" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Europe
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="asia" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Asia
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="africa" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Africa
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="south_america" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        South America
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="middle_east" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Middle East
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="australia" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Australia/Oceania
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="central_america" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Central America
+                    </div>
+                </label>
+
+                <label class="cursor-pointer">
+                    <input type="radio" name="region" value="other" class="peer sr-only" required>
+                    <div class="px-2 py-1 rounded-md border-2 border-(--therapy-tips) text-sm font-medium text-(--therapy-tips-text)
+                            peer-checked:border-(--therapy-tips) peer-checked:bg-(--therapy-tips) 
+                            peer-checked:text-white hover:border-(--therapy-tips) 
+                            transition-all duration-100 cursor-pointer">
+                        Other
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="flex md:hidden flex-col gap-2">
+            <div class="mb-3">
+                <h3 class="text-base font-medium text-(--therapy-tips-text)">
+                    What region of the world do you live in?
+                </h3>
+            </div>
+
+            <div class="relative">
+                <input type="hidden" name="region" id="region" required>
+    
+                <div class="region-dropdown">
+                    <button type="button" class="region-dropdown-button w-full px-4 py-2 pr-10 rounded-md border-1 border-(--therapy-tips) open:border-b-0
+                                       text-lg font-medium text-gray-400 bg-white
+                                       hover:border-(--therapy-tips) focus:outline-none focus:border-(--therapy-tips) 
+                                       text-left cursor-pointer transition-colors">
+                        <span class="dropdown-selected-text">Select</span>
+                    </button>
+    
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <svg class="dropdown-arrow size-10 text-(--therapy-tips) transition-transform duration-200"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+    
+                    <div class="dropdown-list absolute top-full left-0 right-0 bg-white border-1 border-(--therapy-tips) border-t-0
+                                   rounded-b-lg shadow-lg z-10 hidden max-h-60 overflow-y-auto">
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="north_america">North America</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-gray-100 hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="europe">Europe</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="asia">Asia</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-gray-100 hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="africa">Africa</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="south_america">South America</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="middle_east">Middle East</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="australia">Australia/Oceania</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="central_america">Central America</div>
+                        <div class="dropdown-option cursor-pointer px-4 py-2 text-lg font-medium text-(--therapy-tips-text) bg-white hover:bg-(--therapy-tips) hover:text-white transition-colors"
+                            data-value="other">Other</div>
+                    </div>
+                </div>
+            </div>
+    
+            <script>
+                (function () {
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', initDropdown);
+                    } else {
+                        initDropdown();
+                    }
+    
+                    function initDropdown() {
+                        const dropdown = document.querySelector('.region-dropdown');
+                        if (!dropdown) return;
+    
+                        const button = dropdown.querySelector('.region-dropdown-button');
+                        const list = dropdown.querySelector('.dropdown-list');
+                        const selectedText = dropdown.querySelector('.dropdown-selected-text');
+                        const arrow = dropdown.querySelector('.dropdown-arrow');
+                        const hiddenInput = document.getElementById('region');
+                        const options = dropdown.querySelectorAll('.dropdown-option');
+    
+                        // Toggle dropdown
+                        button.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+    
+                            console.log('Button clicked for age'); // Debug log
+    
+                            // Close other dropdowns
+                            document.querySelectorAll('.dropdown-list').forEach(otherList => {
+                                if (otherList !== list) {
+                                    otherList.classList.add('hidden');
+                                    const otherDropdown = otherList.closest('.region-dropdown');
+                                    if (otherDropdown) {
+                                        otherDropdown.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                                        otherDropdown.querySelector('.region-dropdown-button').classList.remove('rounded-b-none');
+                                    }
+                                }
+                            });
+    
+                            // Toggle current dropdown
+                            const isHidden = list.classList.contains('hidden');
+                            list.classList.toggle('hidden');
+                            arrow.classList.toggle('rotate-180');
+    
+                            // Adjust button border radius when dropdown is open
+                            if (isHidden) {
+                                button.classList.add('rounded-b-none');
+                            } else {
+                                button.classList.remove('rounded-b-none');
+                            }
+                        });
+    
+                        // Handle option selection
+                        options.forEach(option => {
+                            option.addEventListener('click', function (e) {
+                                e.stopPropagation();
+    
+                                const value = this.dataset.value;
+                                const text = this.textContent;
+    
+                                console.log('Option selected:', value, text); // Debug log
+    
+                                // Update hidden input
+                                hiddenInput.value = value;
+    
+                                // Update button text and styling
+                                selectedText.textContent = text;
+                                button.classList.remove('text-gray-400');
+                                button.classList.add('text-(--therapy-tips-text)');
+    
+                                // Highlight selected option
+                                options.forEach(opt => {
+                                    opt.classList.remove('bg-(--therapy-tips)', 'text-white');
+                                    if (opt.dataset.value === '1' || opt.dataset.value === '3' || opt.dataset.value === '5') {
+                                        opt.classList.add('bg-white');
+                                    } else {
+                                        opt.classList.add('bg-gray-100');
+                                    }
+                                });
+    
+                                this.classList.add('bg-(--therapy-tips)', 'text-white');
+                                this.classList.remove('bg-white', 'bg-gray-100');
+    
+                                // Close dropdown
+                                list.classList.add('hidden');
+                                arrow.classList.remove('rotate-180');
+                                button.classList.remove('rounded-b-none');
+                            });
+                        });
+    
+                        // Close dropdown when clicking outside (only add once per page)
+                        if (!window.dropdownClickHandlerAdded) {
+                            document.addEventListener('click', function (e) {
+                                if (!e.target.closest('.region-dropdown')) {
+                                    document.querySelectorAll('.dropdown-list').forEach(list => {
+                                        list.classList.add('hidden');
+                                        const dropdown = list.closest('.region-dropdown');
+                                        if (dropdown) {
+                                            dropdown.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                                            dropdown.querySelector('.region-dropdown-button').classList.remove('rounded-b-none');
+                                        }
+                                    });
+                                }
+                            });
+                            window.dropdownClickHandlerAdded = true;
+                        }
+                    }
+                })();
+            </script>
+        </div>
+
+        <div class="hidden md:block rounded-lg p-4 bg-white">
+            <div class="mb-3">
+                <h3 class="text-base font-medium text-(--therapy-tips-text)">
+                    What is your first name?
+                </h3>
+            </div>
+
+            <div class="flex">
+                <input type="text" name="firstName" 
+                       class="px-3 py-2 border-2 border-(--therapy-tips) rounded-md text-sm font-medium text-(--therapy-tips-text)
+                              focus:border-(--therapy-tips) focus:outline-none transition-all duration-100
+                              placeholder-gray-400" 
+                       placeholder="Enter your first name">
+            </div>
+        </div>
+
+        <div class="flex md:hidden flex-col gap-2">
+            <div class="mb-3">
+                <h3 class="text-base font-medium text-(--therapy-tips-text)">
+                    What is your first name?
+                </h3>
+            </div>
+
+            <div class="relative">
+                <input type="text" name="firstName" 
+                       class="w-full px-3 py-2 border-1 border-(--therapy-tips) rounded-md text-lg font-medium text-(--therapy-tips-text)
+                              focus:border-(--therapy-tips) focus:outline-none transition-all duration-100
+                              placeholder-gray-400" 
+                       placeholder="Enter your first name">
+            </div>
+        </div>
+    </div>

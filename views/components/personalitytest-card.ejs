@@ -1,0 +1,48 @@
+<a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %><%= article.article_type.trim() %>/<%= article.slug.trim() %>"
+   class="group flex flex-col items-center gap-2 rounded-xl pb-2 
+          font-bold text-(--therapy-tips) bg-(--therapy-tips)/35
+          hover:text-white hover:bg-(--therapy-tips) 
+          transition-all duration-100">
+  <div class="group flex flex-col items-center size-full overflow-hidden 
+              bg-white border border-(--therapy-tips-text)/70 rounded-t-xl 
+              group-hover:border-(--therapy-tips) transition-all duration-100">
+    <div class="relative flex items-center w-full h-full">
+      <div class="absolute flex flex-col justify-center w-2/5 md:w-1/2 lg:w-2/3 xl:w-3/7 h-full 
+                  px-4 gap-1 md:gap-0.5 lg:gap-1">
+        <h2 class="z-10 break-normal font-bold text-(--therapy-tips) 
+                   text-md md:text-sm xl:text-2xl 
+                   leading-4 md:leading-4 lg:leading-5 xl:leading-7">
+          <%= article.title.trim() %>
+        </h2>
+        <span class="relative -left-4 z-10 w-fit font-normal
+                     text-xs md:text-2xs lg:text-xs text-(--therapy-tips-text) border border-(--therapy-tips-text)/70 border-l-0
+                     bg-white px-8 md:px-4 lg:px-8 py-1 rounded-r-md">
+          QUIZ
+        </span>
+        <span class="z-10 flex gap-0.5 md:gap-0.5 lg:gap-1 pt-1 
+                     font-light text-3xs md:text-3xs lg:text-2xs text-(--therapy-tips-text)">
+          <img src="https://unpkg.com/lucide-static@latest/icons/calendar.svg"
+               class="size-3 mb-0.5" />
+          <%= new Date(article.publication_date?.trim() ?? "").toLocaleDateString("en-US", { 
+            year: "numeric", 
+            month: "short", 
+            day: "numeric" 
+          }).toUpperCase() %>
+          <span class="text-(--therapy-tips-text)">·</span>
+          <img src="https://unpkg.com/lucide-static@latest/icons/clock.svg"
+               class="size-3 mb-0.5" />
+          <%= readDurationInMinsFromWords(article.content) %> MIN
+        </span>
+      </div>
+      <div>
+        <img src="<%= article.hero_image_url?.trim() %>" alt="<%= article.title.trim() %>"
+             class="-z-10 object-cover w-4/5 rounded-t-lg translate-x-[46%] 
+                    group-hover:cursor-pointer" />
+      </div>
+    </div>
+  </div>
+  <span class="flex items-center gap-2 text-sm">
+    TAKE THE PERSONALITY TEST
+    <img class="bg-(--therapy-tips) group-hover:bg-white mask-[url(https://unpkg.com/lucide-static@latest/icons/chevron-right.svg)] mask-center mask-contain mask-no-repeat size-5 mb-0.5" />
+  </span>
+</a>
