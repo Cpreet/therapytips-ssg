@@ -103,7 +103,7 @@
                             <%= article.subtitle %>
                         </h2>
                         <div class="mb-4">
-                            <%- include('components/author-tag.ejs', { 
+                            <%- include('components/author-tag', { 
                                 imageUrl: author.image_url || "", 
                                 authorName: author.name,
                                 authorBio: author.bio || "",
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div class="px-4 md:px-8 mb-8">
-                        <%- include('components/personalitytest-form.ejs', { testId: article.id || 0, questions: questions }) %>
+                        <%- include('components/personalitytest-form', { testId: article.id || 0, questions: questions }) %>
                     </div>
                 </div>
                 <div class="hidden md:flex w-2/5 xl:w-1/3">
@@ -136,17 +136,17 @@
                         <div class="absolute inset-y-0 left-0 w-px bg-fuchsia-950/35"></div>
                     </div>
                     <div class="flex flex-col gap-8 md:px-4">
-                        <%- include('components/aside-trending.ejs') %>
+                        <%- include('components/aside-trending') %>
                         <span class="h-px bg-fuchsia-950/35"></span>
-                        <%- include('components/aside-journal.ejs') %>
+                        <%- include('components/aside-journal') %>
                         <span class="h-px bg-fuchsia-950/35"></span>
-                        <%- include('components/aside-videos.ejs') %>
+                        <%- include('components/aside-videos') %>
                         <span class="h-px bg-fuchsia-950/35"></span>
-                        <%- include('components/cta-bmc.ejs') %>
+                        <%- include('components/cta-bmc') %>
                         <span class="h-px bg-fuchsia-950/35"></span>
-                        <%- include('components/cta-further-reading.ejs') %>
+                        <%- include('components/cta-further-reading') %>
                         <span class="h-px bg-fuchsia-950/35"></span>
-                        <%- include('components/cta-book-appointment.ejs') %>
+                        <%- include('components/cta-book-appointment') %>
                     </div>
                 </div>
             </div>

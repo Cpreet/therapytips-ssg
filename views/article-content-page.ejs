@@ -103,7 +103,7 @@
                         <%= article.subtitle %>
                     </h2>
                     <div class="mb-4">
-                        <%- include('components/author-tag.ejs', { 
+                        <%- include('components/author-tag', { 
                             imageUrl: author.image_url.trim(), 
                             authorName: author.name.trim(),
                             authorBio: author.bio.trim(),
@@ -130,21 +130,21 @@
                     <div class="absolute inset-y-0 left-0 w-px bg-fuchsia-950/35"></div>
                 </div>
                 <div class="flex flex-col gap-8 md:px-4">
-                    <%- include('components/aside-trending.ejs') %>
+                    <%- include('components/aside-trending') %>
                     <span class="h-px bg-fuchsia-950/35"></span>
-                    <%- include('components/aside-journal.ejs') %>
+                    <%- include('components/aside-journal') %>
                     <span class="h-px bg-fuchsia-950/35"></span>
-                    <%- include('components/aside-videos.ejs') %>
+                    <%- include('components/aside-videos') %>
                     <span class="h-px bg-fuchsia-950/35"></span>
-                    <%- include('components/cta-bmc.ejs') %>
+                    <%- include('components/cta-bmc') %>
                     <span class="h-px bg-fuchsia-950/35"></span>
-                    <%- include('components/cta-further-reading.ejs') %>
+                    <%- include('components/cta-further-reading') %>
                     <!-- <span class="h-px bg-fuchsia-950/35"></span>
-                    <%#- include('components/cta-book-appointment.ejs') %> -->
+                    <%#- include('components/cta-book-appointment') %> -->
                 </div>
             </div>
         </main>
-        <%- include('components/footer.ejs') %>
+        <%- include('components/footer') %>
     </div>
 </body>
 

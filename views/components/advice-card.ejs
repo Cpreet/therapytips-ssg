@@ -1,41 +1,38 @@
-<a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %><%= article.article_type.trim() %>/<%= article.slug.trim() %>" 
-   class="flex flex-col size-full group rounded-xl items-center justify-between mb-15.5 sm:mb-30 md:mb-15.5">
+<a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %><%= article.article_type.trim() %>/<%= article.slug.trim() %>"
+  class="flex flex-col size-full group rounded-xl items-center justify-between mb-15.5 sm:mb-30 md:mb-15.5">
   <article class="relative">
-    <img src="<%= article.hero_image_url?.trim() %>" 
-         alt="<%= article.title?.trim() %>" 
-         height="250"
-         class="object-cover group-hover:cursor-pointer rounded-lg" />
-    
-    <div class="absolute w-11/12 bottom-0 translate-y-4/5 right-0 -translate-x-1/24
-                flex flex-col px-4 py-3 bg-white border border-(--therapy-tips-text)/70 group-hover:border-(--therapy-tips) rounded-lg z-10">
+    <img src="<%= article.hero_image_url?.trim() %>" alt="<%= article.title?.trim() %>" height="250"
+      class="object-cover group-hover:cursor-pointer rounded-lg" />
+
+    <div
+      class="absolute w-11/12 bottom-0 right-0 translate-y-4/5 -translate-x-1/24
+              gap-1 flex flex-col px-3 py-3 bg-white border border-(--therapy-tips-light) group-hover:border-(--therapy-tips) rounded-xl z-10">
       <h2 class="font-bold text-(--therapy-tips) line-clamp-1 group-hover:underline leading-5">
         <%= article.title %>
       </h2>
-      
-      <div class="flex items-center justify-end gap-1 w-full text-(--therapy-tips-text) py-2
+
+      <div class="flex items-center justify-between gap-1 w-full text-(--therapy-tips-text) pt-2
                   text-2xs md:text-2xs lg:text-xs">
         <span class="flex items-center gap-1">
-          <span class="absolute -left-0 text-xs md:text-2xs lg:text-xs border border-(--therapy-tips-text)/70 border-l-0 group-hover:border-(--therapy-tips) bg-white text-(--therapy-tips-text) px-8 md:px-4 lg:px-8 py-1 rounded-r-md">
+          <span
+            class="text-xs md:text-2xs lg:text-xs border border-(--therapy-tips-text)/70 group-hover:border-(--therapy-tips) bg-white text-(--therapy-tips-text) px-4 py-1 rounded-md">
             ADVICE
           </span>
         </span>
-        
-        <time class="flex items-center gap-1">
-          <img src="https://unpkg.com/lucide-static@latest/icons/calendar.svg" 
-               class="size-2.5 md:size-2 lg:size-3" />
-          <%= new Date(article.publication_date?.trim() ?? "").toLocaleDateString("en-US", { 
-            year: "numeric", 
-            month: "short", 
-            day: "numeric" 
-          }).toUpperCase() %>
-        </time>
-        
-        <span class="text-(--therapy-tips-text)">·</span>
-        
+
         <span class="flex items-center gap-1">
-          <img src="https://unpkg.com/lucide-static@latest/icons/clock.svg" 
-               class="size-2.5 md:size-2 lg:size-3" />
-          <%= readDurationInMinsFromWords(article.content) %> MIN
+          <time class="flex items-center gap-1" datetime="<%= article.publication_date?.trim() %>">
+            <img src="https://unpkg.com/lucide-static@latest/icons/calendar.svg" class="size-2.5 md:size-2 lg:size-3" />
+            <%= new Date(article.publication_date?.trim() ?? "" ).toLocaleDateString("en-US", { year: "numeric" ,
+              month: "short" , day: "numeric" }).toUpperCase() %>
+          </time>
+
+          <span class="text-(--therapy-tips-text)">·</span>
+
+          <span class="flex items-center gap-1">
+            <img src="https://unpkg.com/lucide-static@latest/icons/clock.svg" class="size-2.5 md:size-2 lg:size-3" />
+            <%= readDurationInMinsFromWords(article.content) %> MIN
+          </span>
         </span>
       </div>
     </div>

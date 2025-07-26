@@ -5,20 +5,20 @@
             <strong>Step 1:</strong> Rate the following statements based on how much you agree with them on a scale of strongly disagree to strongly agree.
         </p>
         <% questions.forEach((question, index) => { %>
-            <%- include('personalitytest-question.ejs', { 
+            <%- include('personalitytest-question', { 
                 question: question, 
                 questionIndex: index 
             }) %>
         <% }); %>
-        <%- include('personalitytest-submit.ejs') %>
+        <%- include('personalitytest-submit') %>
     </div>
 
     <div class="rounded-lg p-6 shadow-md">
-        <%- include('personalitytest-userdetails.ejs') %>
+        <%- include('personalitytest-userdetails') %>
     </div>
 
     <!-- <div class="rounded-lg p-6 shadow-md">
-        <%#- include('personalitytest-results.ejs') %>
+        <%#- include('personalitytest-results') %>
     </div> -->
 </form>
 
