@@ -142,8 +142,12 @@ async function performBuild(environment: string) {
 
   console.log("📝 Fetching advice articles...");
   const advice = await Promise.all([
-    getArticle("3-reasons-why-constructive-complaining-is-actually-healthy"),
-    getArticle("how-to-stop-feeling-like-youre-falling-behind-in-life"),
+    getArticle("3-surprising-benefits-of-a-reverse-bucket-list"),
+    getArticle("3-emotionally-nourishing-shifts-to-make-your-day-more-fulfilling"),
+    // getArticle("3-clues-your-people-pleasing-is-rooted-in-trauma"),
+    // getArticle("3-subtle-habits-that-sabotage-your-growth"),
+    // getArticle("3-reasons-why-constructive-complaining-is-actually-healthy"),
+    // getArticle("how-to-stop-feeling-like-youre-falling-behind-in-life"),
     // getArticle("3-habits-that-can-help-you-avoid-burnout"),
     // getArticle("3-non-negotiables-to-add-to-your-dating-checklist"),
     // getArticle("3-things-you-should-never-do-before-a-first-date"),
@@ -152,10 +156,18 @@ async function performBuild(environment: string) {
 
   console.log("📰 Fetching main articles...");
   const articles = await Promise.all([
-    getArticle("3-ways-to-tell-if-youre-ready-to-let-go-of-your-ex"),
-    getArticle("2-clues-that-youre-under-functioning-in-love"),
-    getArticle("3-signs-your-partner-is-emotionally-mature"),
-    getArticle("2-surprising-truths-about-tattooed-people"),
+    getArticle("a-psychologist-explains-the-surprising-link-between-skipping-breakfast-and-depression"),
+    getArticle("3-reasons-why-you-cant-stop-thinking-about-your-ex"),
+    getArticle("3-ways-your-beliefs-about-sex-affect-your-relationships"),
+    getArticle("4-types-of-teen-anger-and-what-they-actually-mean"),
+    // getArticle("2-signs-youre-the-kind-of-cool-everyone-secretly-admires"),
+    // getArticle("a-psychologist-explains-the-conflict-paradox-in-relationships"),
+    // getArticle("3-types-of-silence-that-can-heal-relationships-after-a-fight"),
+    // getArticle("how-short-video-addiction-alters-your-brain"),
+    // getArticle("3-ways-to-tell-if-youre-ready-to-let-go-of-your-ex"),
+    // getArticle("2-clues-that-youre-under-functioning-in-love"),
+    // getArticle("3-signs-your-partner-is-emotionally-mature"),
+    // getArticle("2-surprising-truths-about-tattooed-people"),
     // getArticle("2-reasons-memes-matter-more-than-you-realize"),
     // getArticle("3-ways-over-functioning-is-quietly-draining-your-energy"),
     // getArticle("2-destructive-extremes-in-relationships-and-what-they-mean"),
@@ -395,6 +407,17 @@ async function performBuild(environment: string) {
         ytDataArr: templateData.ytDataArr,
         durationToMinutes: templateData.durationToMinutes,
         readDurationInMinsFromWords: templateData.readDurationInMinsFromWords,
+        environment: templateData.environment,
+        config: templateData.config,
+        buildTime: templateData.buildTime,
+      }
+    },
+    {
+      template: "./views/book-publication.ejs",
+      output: "book-publication.html",
+      data: {
+        page: "book-publication",
+        items: templateData.items,
         environment: templateData.environment,
         config: templateData.config,
         buildTime: templateData.buildTime,
