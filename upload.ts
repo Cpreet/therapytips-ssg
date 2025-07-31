@@ -5,9 +5,13 @@ console.log("🚀 Starting FTP Upload Process...");
 
 // Parse command line arguments
 const args = process.argv.slice(2);
+console.log(`📋 Command line arguments (args): [${args.join(", ")}]`);
+
 const helpFlag = args.includes("--help") || args.includes("-h");
 const dryRunFlag = args.includes("--dry-run") || args.includes("-d");
 const verboseFlag = args.includes("--verbose") || args.includes("-v");
+
+console.log(`🔧 Parsed flags - helpFlag: ${helpFlag}, dryRunFlag: ${dryRunFlag}, verboseFlag: ${verboseFlag}`);
 
 if (helpFlag) {
   console.log(`
@@ -44,6 +48,9 @@ Examples:
 const targetEnv = args.find(arg => !arg.startsWith("-")) || "prod";
 const validEnvs = ["dev", "stage", "prod"];
 
+console.log(`🎯 Target environment (targetEnv): ${targetEnv.toUpperCase()}`);
+console.log(`✅ Valid environments (validEnvs): [${validEnvs.join(", ")}]`);
+
 if (!validEnvs.includes(targetEnv)) {
   console.error(`❌ Invalid environment: ${targetEnv}`);
   console.error(`Valid environments: ${validEnvs.join(", ")}`);
@@ -54,18 +61,22 @@ console.log(`🎯 Target environment: ${targetEnv.toUpperCase()}`);
 
 // Check if build directory exists
 const buildPath = `./builds/${targetEnv}`;
+console.log(`📁 Build directory path (buildPath): ${buildPath}`);
+
 if (!fs.existsSync(buildPath)) {
   console.error(`❌ Build directory not found: ${buildPath}`);
   console.error(`Please run build:${targetEnv} first`);
   process.exit(1);
 }
 
+console.log(`✅ Build directory exists (buildPath): ${buildPath}`);
+
 // Load environment-specific configuration
 const envFile = targetEnv === "dev" ? ".env.development" : 
                 targetEnv === "stage" ? ".env.staging" : 
                 ".env.production";
 
-console.log(`📋 Loading FTP config from ${envFile}...`);
+console.log(`📋 Loading FTP config from environment file (envFile): ${envFile}...`);
 
 // FTP Configuration from environment variables
 const ftpConfig = {
@@ -73,15 +84,24 @@ const ftpConfig = {
   port: parseInt(process.env.FTP_PORT || "21"),
   user: process.env.FTP_USER,
   password: process.env.FTP_PASSWORD,
-  remotePath: process.env.FTP_REMOTE_PATH || "/",
+  remotePath: process.env.FTP_REMOTE_PATH || (targetEnv === "prod" ? "/" : `/${targetEnv}`),
   secure: process.env.FTP_SECURE === "true"
 };
+
+console.log(`⚙️ FTP Configuration object (ftpConfig) loaded:`);
+console.log(`   ftpConfig.host: ${ftpConfig.host}`);
+console.log(`   ftpConfig.port: ${ftpConfig.port}`);
+console.log(`   ftpConfig.user: ${ftpConfig.user}`);
+console.log(`   ftpConfig.remotePath: ${ftpConfig.remotePath}`);
+console.log(`   ftpConfig.secure: ${ftpConfig.secure}`);
 
 // Validate required FTP configuration
 const missingConfig = [];
 if (!ftpConfig.host) missingConfig.push("FTP_HOST");
 if (!ftpConfig.user) missingConfig.push("FTP_USER");
 if (!ftpConfig.password) missingConfig.push("FTP_PASSWORD");
+
+console.log(`🔍 Missing config check (missingConfig): [${missingConfig.join(", ")}]`);
 
 if (missingConfig.length > 0) {
   console.error(`❌ Missing required FTP configuration in ${envFile}:`);
@@ -90,7 +110,7 @@ if (missingConfig.length > 0) {
 }
 
 if (verboseFlag) {
-  console.log("⚙️ FTP Configuration:");
+  console.log("⚙️ Verbose FTP Configuration (ftpConfig):");
   console.log(`   Host: ${ftpConfig.host}`);
   console.log(`   Port: ${ftpConfig.port}`);
   console.log(`   User: ${ftpConfig.user}`);
@@ -116,40 +136,58 @@ function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {
 }
 
 // Get all files to upload
+console.log(`🔍 Scanning build directory (buildPath): ${buildPath}`);
 const filesToUpload = getAllFiles(buildPath);
-const relativeFiles = filesToUpload.map(file => ({
-  local: file,
-  remote: path.posix.join(ftpConfig.remotePath!, file.replace(buildPath, "").replace(/\\/g, "/"))
-}));
+console.log(`📁 Files found (filesToUpload.length): ${filesToUpload.length}`);
 
-console.log(`📁 Found ${filesToUpload.length} files to upload`);
+const relativeFiles = filesToUpload.map(file => {
+  // Normalize both paths to ensure proper replacement
+  const normalizedBuildPath = path.resolve(buildPath);
+  const normalizedFile = path.resolve(file);
+  
+  // Remove build path and clean up the relative path
+  let relativePath = normalizedFile.replace(normalizedBuildPath, "");
+  // Remove leading slashes/backslashes
+  relativePath = relativePath.replace(/^[\/\\]+/, "");
+  // Convert backslashes to forward slashes
+  relativePath = relativePath.replace(/\\/g, "/");
+  
+  return {
+    local: file,
+    remote: path.posix.join(ftpConfig.remotePath!, relativePath)
+  };
+});
+
+console.log(`📋 Processed file mappings (relativeFiles.length): ${relativeFiles.length}`);
 
 if (dryRunFlag) {
-  console.log("\n🔍 DRY RUN - Files that would be uploaded:");
-  relativeFiles.forEach(file => {
+  console.log("\n🔍 DRY RUN - Files that would be uploaded (relativeFiles):");
+  relativeFiles.forEach((file, index) => {
     const size = fs.statSync(file.local).size;
     const sizeStr = size > 1024 * 1024 ? 
       `${(size / 1024 / 1024).toFixed(2)} MB` :
       size > 1024 ? 
       `${(size / 1024).toFixed(2)} KB` :
       `${size} B`;
-    console.log(`   ${file.local} → ${file.remote} (${sizeStr})`);
+    console.log(`   [${index + 1}] ${file.local} → ${file.remote} (${sizeStr})`);
   });
-  console.log(`\n📊 Total files: ${filesToUpload.length}`);
+  
+  const totalFiles = filesToUpload.length;
+  console.log(`\n📊 Total files (totalFiles): ${totalFiles}`);
+  
   const totalSize = filesToUpload.reduce((sum, file) => sum + fs.statSync(file).size, 0);
   const totalSizeStr = totalSize > 1024 * 1024 ? 
     `${(totalSize / 1024 / 1024).toFixed(2)} MB` :
     totalSize > 1024 ? 
     `${(totalSize / 1024).toFixed(2)} KB` :
     `${totalSize} B`;
-  console.log(`📊 Total size: ${totalSizeStr}`);
+  console.log(`📊 Total size (totalSize): ${totalSizeStr}`);
   console.log("\n✅ Dry run completed (no files were actually uploaded)");
   process.exit(0);
 }
 
 // Actual FTP upload implementation
 // Uncomment the following section and install basic-ftp for real uploads:
-/*
 import { Client } from "basic-ftp";
 
 async function uploadToFTP() {
@@ -157,7 +195,7 @@ async function uploadToFTP() {
   client.ftp.verbose = verboseFlag;
   
   try {
-    console.log(`\n📤 Connecting to ${ftpConfig.host}:${ftpConfig.port}...`);
+    console.log(`\n📤 Connecting to FTP server (ftpConfig.host): ${ftpConfig.host}:${ftpConfig.port}...`);
     await client.access({
       host: ftpConfig.host!,
       port: ftpConfig.port,
@@ -165,16 +203,17 @@ async function uploadToFTP() {
       password: ftpConfig.password!,
       secure: ftpConfig.secure
     });
-    console.log("✅ Connected to FTP server");
+    console.log(`✅ Connected to FTP server (ftpConfig.host): ${ftpConfig.host}`);
     
     // Ensure remote directory exists
     if (ftpConfig.remotePath !== "/") {
-      console.log(`📁 Ensuring remote directory exists: ${ftpConfig.remotePath}`);
+      console.log(`📁 Ensuring remote directory exists (ftpConfig.remotePath): ${ftpConfig.remotePath}`);
       await client.ensureDir(ftpConfig.remotePath!);
     }
     
     let uploadedCount = 0;
     const totalFiles = relativeFiles.length;
+    console.log(`📊 Starting upload process - totalFiles: ${totalFiles}`);
     
     for (const file of relativeFiles) {
       uploadedCount++;
@@ -187,9 +226,9 @@ async function uploadToFTP() {
       }
       
       if (verboseFlag) {
-        console.log(`📤 [${progress}%] Uploading: ${file.local} → ${file.remote}`);
+        console.log(`📤 [${progress}%] Uploading (uploadedCount: ${uploadedCount}/${totalFiles}): ${file.local} → ${file.remote}`);
       } else {
-        process.stdout.write(`\r📤 Uploading files... ${progress}% (${uploadedCount}/${totalFiles})`);
+        process.stdout.write(`\r📤 Uploading files... ${progress}% (uploadedCount: ${uploadedCount}/${totalFiles})`);
       }
       
       await client.uploadFrom(file.local, file.remote);
@@ -199,10 +238,10 @@ async function uploadToFTP() {
       console.log(); // New line after progress
     }
     
-    console.log("✅ All files uploaded successfully");
+    console.log(`✅ All files uploaded successfully (uploadedCount: ${uploadedCount})`);
     
   } catch (error) {
-    console.error("❌ FTP upload failed:", error);
+    console.error(`❌ FTP upload failed (error): ${error}`);
     throw error;
   } finally {
     client.close();
@@ -211,10 +250,10 @@ async function uploadToFTP() {
 
 // Run the actual upload
 await uploadToFTP();
-*/
+
 
 // For now, we'll simulate the upload process
-console.log("\n📤 Starting upload process...");
+console.log("\n📤 Starting upload simulation process...");
 console.log("⚠️  Note: This is a simulation. Actual FTP implementation is available above.");
 console.log("💡 To enable real FTP upload:");
 console.log("   1. Run: bun add basic-ftp");
@@ -223,16 +262,17 @@ console.log("   2. Uncomment the FTP implementation section in upload.ts");
 // Simulated upload with progress
 let uploadedCount = 0;
 const totalFiles = relativeFiles.length;
+console.log(`📊 Starting simulation - totalFiles: ${totalFiles}`);
 
 for (const file of relativeFiles) {
   uploadedCount++;
   const progress = Math.round((uploadedCount / totalFiles) * 100);
   
   if (verboseFlag) {
-    console.log(`📤 [${progress}%] Uploading: ${file.local} → ${file.remote}`);
+    console.log(`📤 [${progress}%] Simulating upload (uploadedCount: ${uploadedCount}/${totalFiles}): ${file.local} → ${file.remote}`);
   } else {
     // Simple progress indicator
-    process.stdout.write(`\r📤 Uploading files... ${progress}% (${uploadedCount}/${totalFiles})`);
+    process.stdout.write(`\r📤 Uploading files... ${progress}% (uploadedCount: ${uploadedCount}/${totalFiles})`);
   }
   
   // Simulate upload time
@@ -244,9 +284,10 @@ if (!verboseFlag) {
 }
 
 console.log(`\n🎉 Upload simulation completed!`);
-console.log(`📊 ${uploadedCount} files would be uploaded to ${ftpConfig.host}`);
-console.log(`🎯 Environment: ${targetEnv.toUpperCase()}`);
-console.log(`📁 Remote path: ${ftpConfig.remotePath}`);
+console.log(`📊 Files processed (uploadedCount): ${uploadedCount}`);
+console.log(`🎯 Target environment (targetEnv): ${targetEnv.toUpperCase()}`);
+console.log(`📁 Remote path (ftpConfig.remotePath): ${ftpConfig.remotePath}`);
+console.log(`🌐 FTP host (ftpConfig.host): ${ftpConfig.host}`);
 
 // Implementation note
 console.log(`
