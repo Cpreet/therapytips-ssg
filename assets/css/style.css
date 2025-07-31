@@ -975,9 +975,6 @@
   .mt-0 {
     margin-top: calc(var(--spacing) * 0);
   }
-  .mt-0\.5 {
-    margin-top: calc(var(--spacing) * 0.5);
-  }
   .mt-1 {
     margin-top: calc(var(--spacing) * 1);
   }
@@ -1125,17 +1122,11 @@
   .h-1 {
     height: calc(var(--spacing) * 1);
   }
-  .h-1\/2 {
-    height: calc(1/2 * 100%);
-  }
   .h-2 {
     height: calc(var(--spacing) * 2);
   }
   .h-3 {
     height: calc(var(--spacing) * 3);
-  }
-  .h-3\.5 {
-    height: calc(var(--spacing) * 3.5);
   }
   .h-4 {
     height: calc(var(--spacing) * 4);
@@ -1179,9 +1170,6 @@
   .w-1 {
     width: calc(var(--spacing) * 1);
   }
-  .w-1\/2 {
-    width: calc(1/2 * 100%);
-  }
   .w-1\/3 {
     width: calc(1/3 * 100%);
   }
@@ -1193,9 +1181,6 @@
   }
   .w-3 {
     width: calc(var(--spacing) * 3);
-  }
-  .w-3\.5 {
-    width: calc(var(--spacing) * 3.5);
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
@@ -1783,23 +1768,11 @@
     --tw-gradient-to: var(--color-pink-500);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
-  .mask-\[url\(\'https\:\/\/unpkg\.com\/lucide-static\@latest\/icons\/book-open\.svg\'\)\] {
-    mask-image: url('https://unpkg.com/lucide-static@latest/icons/book-open.svg');
-  }
-  .mask-\[url\(\'https\:\/\/unpkg\.com\/lucide-static\@latest\/icons\/brain\.svg\'\)\] {
-    mask-image: url('https://unpkg.com/lucide-static@latest/icons/brain.svg');
-  }
-  .mask-\[url\(\'https\:\/\/unpkg\.com\/lucide-static\@latest\/icons\/graduation-cap\.svg\'\)\] {
-    mask-image: url('https://unpkg.com/lucide-static@latest/icons/graduation-cap.svg');
-  }
   .mask-\[url\(\'https\:\/\/unpkg\.com\/lucide-static\@latest\/icons\/menu\.svg\'\)\] {
     mask-image: url('https://unpkg.com/lucide-static@latest/icons/menu.svg');
   }
   .mask-\[url\(\'https\:\/\/unpkg\.com\/lucide-static\@latest\/icons\/search\.svg\'\)\] {
     mask-image: url('https://unpkg.com/lucide-static@latest/icons/search.svg');
-  }
-  .mask-\[url\(\'https\:\/\/unpkg\.com\/lucide-static\@latest\/icons\/user\.svg\'\)\] {
-    mask-image: url('https://unpkg.com/lucide-static@latest/icons/user.svg');
   }
   .mask-\[url\(https\:\/\/unpkg\.com\/lucide-static\@latest\/icons\/chevron-right\.svg\)\] {
     mask-image: url(https://unpkg.com/lucide-static@latest/icons/chevron-right.svg);
@@ -2344,23 +2317,6 @@
       opacity: 100%;
     }
   }
-  .peer-focus\:ring-2 {
-    &:is(:where(.peer):focus ~ *) {
-      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
-      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-    }
-  }
-  .peer-focus\:ring-\(--therapy-tips\) {
-    &:is(:where(.peer):focus ~ *) {
-      --tw-ring-color: var(--therapy-tips);
-    }
-  }
-  .peer-focus\:ring-offset-1 {
-    &:is(:where(.peer):focus ~ *) {
-      --tw-ring-offset-width: 1px;
-      --tw-ring-offset-shadow: var(--tw-ring-inset,) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-    }
-  }
   .marker\:text-\(--therapy-tips\) {
     & *::marker {
       color: var(--therapy-tips);
@@ -2486,19 +2442,9 @@
       border-color: var(--color-fuchsia-950);
     }
   }
-  .checked\:border-purple-600 {
-    &:checked {
-      border-color: var(--color-purple-600);
-    }
-  }
   .checked\:bg-fuchsia-950 {
     &:checked {
       background-color: var(--color-fuchsia-950);
-    }
-  }
-  .checked\:bg-purple-600 {
-    &:checked {
-      background-color: var(--color-purple-600);
     }
   }
   .hover\:cursor-pointer {
@@ -2768,11 +2714,6 @@
       width: calc(1/3 * 100%);
     }
   }
-  .md\:w-3\/5 {
-    @media (width >= 48rem) {
-      width: calc(3/5 * 100%);
-    }
-  }
   .md\:grid-cols-2 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2860,19 +2801,9 @@
       padding-block: calc(var(--spacing) * 6);
     }
   }
-  .md\:py-12 {
-    @media (width >= 48rem) {
-      padding-block: calc(var(--spacing) * 12);
-    }
-  }
   .md\:pt-6 {
     @media (width >= 48rem) {
       padding-top: calc(var(--spacing) * 6);
-    }
-  }
-  .md\:text-left {
-    @media (width >= 48rem) {
-      text-align: left;
     }
   }
   .md\:text-3xl {
@@ -3008,11 +2939,6 @@
   .xl\:w-1\/3 {
     @media (width >= 80rem) {
       width: calc(1/3 * 100%);
-    }
-  }
-  .xl\:w-2\/3 {
-    @media (width >= 80rem) {
-      width: calc(2/3 * 100%);
     }
   }
   .xl\:w-3\/7 {
