@@ -1,10 +1,10 @@
 <header class="flex flex-col items-center justify-center w-full lg:p-0 sticky top-0 z-50 bg-white shadow-md">
-    <div class="hidden lg:flex flex-col items-center justify-center w-full">
+    <div class="hidden lg:flex items-center justify-around w-fit">
         <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>">
             <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/TherapyTips-logo.svg" alt="TherapyTips" width="250" class="my-2 mx-auto" />
         </a>
         <nav
-            class="flex items-center justify-center gap-10 max-h-20 px-10 py-2 bg-white w-full text-(--therapy-tips) text-sm">
+            class="flex items-center justify-center gap-10 max-h-20 px-10 py-2 bg-white w-fit text-(--therapy-tips) text-sm">
             <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>" class="hover:underline <%= page === 'landing' ? 'underline underline-offset-2 font-bold' : '' %>">
                 Home
             </a>
@@ -28,12 +28,14 @@
                 Find a Therapist
             </a>
             <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>search" class="hover:underline">
-                <img class="size-4 mb-0.5 bg-white mask-[url('https://unpkg.com/lucide-static@latest/icons/search.svg')] mask-center mask-contain mask-no-repeat" />
+                <svg class="size-4 mb-0.5 text-(--therapy-tips)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
             </a>
         </nav>
     </div>
     <div
-        class="lg:hidden flex items-center justify-between h-12 w-full p-4 bg-white sm:bg-(--therapy-tips) sticky top-0 top-50">
+        class="lg:hidden flex items-center justify-between h-12 w-full p-4 bg-white sm:bg-(--therapy-tips) sticky top-0 z-50">
         <svg class="size-6 mt-1 text-white sm:text-(--therapy-tips)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -87,7 +89,7 @@
                         <img src="https://unpkg.com/lucide-static@latest/icons/search.svg" class="size-3.5" />
                         Search
                     </span>
-                </a>
+                </a>:
             </nav>
         </div>
     </div>
