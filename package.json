@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "bun run index.ts",
-    "build:local": "bun --env-file=.env run index.ts",
+    "build:local": "bun --env-file=.env.local run index.ts",
     "build:dev": "bun --env-file=.env.development run index.ts",
     "build:stage": "bun --env-file=.env.staging run index.ts",
     "build:prod": "bun --env-file=.env.production run index.ts",
@@ -13,7 +13,7 @@
     "upload:dev": "bun --env-file=.env.development run upload.ts dev",
     "upload:stage": "bun --env-file=.env.staging run upload.ts stage",
     "upload:prod": "bun --env-file=.env.production run upload.ts prod",
-    "preview": "bunx serve ./builds/dev/",
+    "preview": "bunx serve ./builds/local/",
     "tailwindgen": "bunx @tailwindcss/cli -i ./tailwind.css -o ./assets/css/style.css --watch"
   },
   "devDependencies": {

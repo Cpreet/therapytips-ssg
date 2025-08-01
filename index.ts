@@ -28,7 +28,7 @@ if (helpFlag) {
 Usage: bun run build [options]
 
 Options:
-  --env=[dev|stage|prod]                 Specify target environment explicitly
+  --env=[local|dev|stage|prod]                 Specify target environment explicitly
   --copy-photos, --include-photos, -p    Include photos directory in build (disabled by default)
   --help, -h                             Show this help message
 
@@ -55,7 +55,7 @@ let targetEnvironment: string | null = null;
 
 // 1. Check explicit command line argument
 if (envArg) {
-  if (["dev", "stage", "prod"].includes(envArg)) {
+  if (["local","dev", "stage", "prod"].includes(envArg)) {
     targetEnvironment = envArg;
   } else {
     console.error(`❌ Invalid environment: ${envArg}. Must be one of: dev, stage, prod`);
@@ -65,7 +65,9 @@ if (envArg) {
 
 // 2. Check NODE_ENV and BUILD_ENV
 if (!targetEnvironment) {
-  if (NODE_ENV === "development" || BUILD_ENV === "development") {
+  if (NODE_ENV === "local" || BUILD_ENV === "local") {
+    targetEnvironment = "local";
+  } else if (NODE_ENV === "development" || BUILD_ENV === "development") {
     targetEnvironment = "dev";
   } else if (NODE_ENV === "staging" || BUILD_ENV === "staging") {
     targetEnvironment = "stage";
@@ -77,6 +79,8 @@ if (!targetEnvironment) {
 // 3. Detect environment based on API_BASE_URL (fallback detection)
 if (!targetEnvironment && API_BASE_URL) {
   if (API_BASE_URL.includes("localhost") || API_BASE_URL.includes("3000")) {
+    targetEnvironment = "local";
+  } else if (API_BASE_URL.includes("dev")) {
     targetEnvironment = "dev";
   } else if (API_BASE_URL.includes("staging")) {
     targetEnvironment = "stage";
@@ -86,7 +90,7 @@ if (!targetEnvironment && API_BASE_URL) {
 }
 
 // If no specific environment is set, build all environments
-const environments = targetEnvironment ? [targetEnvironment] : ["dev", "stage", "prod"];
+const environments = targetEnvironment ? [targetEnvironment] : ["local", "dev", "stage", "prod"];
 
 if (targetEnvironment) {
   console.log(`🎯 Building for ${targetEnvironment.toUpperCase()} environment only`);
@@ -104,10 +108,16 @@ async function performBuild(environment: string) {
   const shouldCopyPhotos = copyPhotosFlag || process.env.COPY_PHOTOS === "true" || process.env.INCLUDE_PHOTOS === "true";
   
   const config = {
+    local: {
+      minifyAssets: false,
+      includeDebugInfo: true,
+      apiBaseUrl: process.env.API_BASE_URL || "http://localhost:4000",
+      copyPhotos: shouldCopyPhotos,
+    },
     dev: {
       minifyAssets: false,
       includeDebugInfo: true,
-      apiBaseUrl: process.env.API_BASE_URL || "http://localhost:3000",
+      apiBaseUrl: process.env.API_BASE_URL || "http://localhost:4000",
       copyPhotos: shouldCopyPhotos,
     },
     stage: {
@@ -417,7 +427,12 @@ async function performBuild(environment: string) {
       output: "book-publication.html",
       data: {
         page: "book-publication",
+        ytData: templateData.ytDataPersonalityTests,
+        personalityTests: templateData.latestPersonalityTests,
         items: templateData.items,
+        ytDataArr: templateData.ytDataArr,
+        durationToMinutes: templateData.durationToMinutes,
+        readDurationInMinsFromWords: templateData.readDurationInMinsFromWords,
         environment: templateData.environment,
         config: templateData.config,
         buildTime: templateData.buildTime,
