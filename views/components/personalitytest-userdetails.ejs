@@ -168,6 +168,9 @@
     
                                 // Update hidden input
                                 hiddenInput.value = value;
+                                
+                                // Notify progress listeners
+                                document.dispatchEvent(new Event('questionAnswered'));
     
                                 // Update button text and styling
                                 selectedText.textContent = text;
@@ -379,6 +382,9 @@
     
                                 // Update hidden input
                                 hiddenInput.value = value;
+                                
+                                // Notify progress listeners
+                                document.dispatchEvent(new Event('questionAnswered'));
     
                                 // Update button text and styling
                                 selectedText.textContent = text;
@@ -638,6 +644,9 @@
     
                                 // Update hidden input
                                 hiddenInput.value = value;
+                                
+                                // Notify progress listeners
+                                document.dispatchEvent(new Event('questionAnswered'));
     
                                 // Update button text and styling
                                 selectedText.textContent = text;

@@ -85,8 +85,8 @@
 </head>
 
 <body>
-    <div class="flex flex-col max-w-[940px] xl:max-w-[1200px] md:m-4 lg:mx-auto border rounded-lg shadow-lg bg-white">
-        <%- include('components/header', { page: '' }) %>
+    <%- include('components/header', { page: '' }) %>
+    <div class="flex flex-col max-w-[940px] xl:max-w-[1200px] lg:mx-auto bg-white">
         <main>
             <div class="flex py-2 md:py-6 w-full">
                 <div class="flex flex-col w-full gap-4 md:px-4 px-2">
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div class="px-4 md:px-8 mb-8">
-                        <%- include('components/personalitytest-form', { testId: article.id || 0, questions: questions }) %>
+                        <%- include('components/personalitytest-form', { testId: article.id || 0, questions: questions, testName: article.title }) %>
                     </div>
                 </div>
                 <div class="hidden md:flex w-2/5 xl:w-1/3">

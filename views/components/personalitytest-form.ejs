@@ -17,86 +17,107 @@
         <%- include('personalitytest-userdetails') %>
     </div>
 
-    <!-- <div class="rounded-lg p-6 shadow-md">
-        <%#- include('personalitytest-results') %>
-    </div> -->
+    <div class="rounded-lg p-6 shadow-md flex flex-col gap-4">
+        <p class="text-lg text-(--therapy-tips-text) font-medium">
+            <strong>Step 3:</strong> Check to make sure you've provided answers to all of the statements/questions above. Once you've done that, click the button below to send your responses to Awake Therapy's Lead Psychologist, Mark Travers, Ph.D. He will provide you with an overview of how you scored relative to others (all answers are anonymized and confidential to protect users' privacy). He can also answer any follow-up questions you may have.
+        </p>
+        <button type="submit" id="submit-button" class="bg-white text-(--therapy-tips) px-4 py-2 border-2 border-(--therapy-tips) rounded-md
+            hover:cursor-pointer hover:bg-(--therapy-tips) hover:text-white opacity-50 cursor-not-allowed
+        " disabled>
+            Submit Your Answers
+        </button>
+    </div>
 </form>
 
 <script>
 document.getElementById('personality-test-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const formData = new FormData(this);
-    const responses = {};
+    const form = this;
+    const formData = new FormData(form);
+    // Get total questions by counting question elements in the DOM
+    const totalQuestions = document.querySelectorAll('[data-question-index]').length;
+
+    // Collect per-question answers from either mobile hidden inputs or desktop radios
+    const questionAnswers = [];
+    const missingIndexes = [];
     let totalScore = 0;
-    let answeredQuestions = 0;
-    
-    // Collect all responses
-    for (let [key, value] of formData.entries()) {
-        if (key.startsWith('question_')) {
-            responses[key] = parseInt(value);
-            totalScore += parseInt(value);
-            answeredQuestions++;
+
+    for (let i = 0; i < totalQuestions; i++) {
+        let value = '';
+        const hidden = document.getElementById(`question_${i}_input`);
+        if (hidden && hidden.value) {
+            value = hidden.value;
+        } else {
+            const checked = form.querySelector(`input[name="question_${i}"]:checked`);
+            if (checked) value = checked.value;
+        }
+
+        if (!value) {
+            missingIndexes.push(i);
+            // highlight missing question block
+            const block = document.querySelector(`[data-question-index="${i}"]`);
+            if (block) {
+                block.style.outline = '2px solid #dc2626';
+                block.style.outlineOffset = '2px';
+            }
+            questionAnswers.push(null);
+        } else {
+            const numeric = parseInt(value, 10);
+            questionAnswers.push(numeric);
+            totalScore += isNaN(numeric) ? 0 : numeric;
         }
     }
-    
-    // Check if all questions are answered
-    const totalQuestions = questions.length;
-    if (answeredQuestions < totalQuestions) {
-        alert('Please answer all questions before submitting.');
+
+    if (missingIndexes.length > 0) {
+        const firstMissing = missingIndexes[0];
+        const firstBlock = document.querySelector(`[data-question-index="${firstMissing}"]`);
+        if (firstBlock) firstBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        alert(`Please answer all questions before submitting. Missing: ${missingIndexes.map(i => i + 1).join(', ')}`);
         return;
     }
-    
-    // Calculate average score
-    const averageScore = totalScore / totalQuestions;
-    
-    // Show results
-    showResults(averageScore, totalScore);
-    
-    // Scroll to results
-    document.getElementById('test-results').scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-    });
-});
 
-function showResults(averageScore, totalScore) {
-    const resultsDiv = document.getElementById('test-results');
-    const resultsContent = document.getElementById('results-content');
-    
-    let interpretation = '';
-    let level = '';
-    
-    // Interpret results based on average score (1-5 scale)
-    if (averageScore >= 4.5) {
-        level = 'High';
-        interpretation = 'You demonstrate excellent active-empathic listening skills. You are highly attuned to others\' emotions and respond with genuine empathy and understanding.';
-    } else if (averageScore >= 3.5) {
-        level = 'Moderate';
-        interpretation = 'You have good active-empathic listening skills with room for improvement. You generally understand others\' feelings but could work on being more consistently empathetic.';
-    } else if (averageScore >= 2.5) {
-        level = 'Developing';
-        interpretation = 'Your active-empathic listening skills are developing. Focus on being more present and emotionally attuned when listening to others.';
-    } else {
-        level = 'Low';
-        interpretation = 'Your active-empathic listening skills could benefit from significant improvement. Consider practicing mindful listening and emotional awareness techniques.';
+    // Prepare mailto content
+    function normalizeAge(value) {
+        switch (value) {
+            case 'under_18': return 'under18';
+            case '18_24': return '18to24';
+            case '25_34': return '25to34';
+            case '35_44': return '35to44';
+            case '45_plus': return '45andover';
+            default: return value || '';
+        }
     }
-    
-    resultsContent.innerHTML = `
-        <div class="text-center mb-4">
-            <div class="text-3xl font-bold text-(--therapy-tips) mb-2">${averageScore.toFixed(1)}/5</div>
-            <div class="text-lg font-semibold text-(--therapy-tips-text)">${level} Active-Empathic Listening</div>
-        </div>
-        <p class="text-base leading-relaxed mb-4">${interpretation}</p>
-        <div class="bg-fuchsia-400/10 rounded-lg p-4">
-            <h5 class="font-semibold text-(--therapy-tips) mb-2">Score Breakdown:</h5>
-            <ul class="text-sm text-(--therapy-tips-text) space-y-1">
-                <li>Total Score: ${totalScore}/<%= questions.length * 5 %></li>
-                <li>Average Score: ${averageScore.toFixed(2)}/5</li>
-                <li>Questions Answered: <%= questions.length %></li>
-            </ul>
-        </div>
-    `;
-    
-    resultsDiv.classList.remove('hidden');
-}</script> 
+
+    function normalizeSimple(value) {
+        return (value || '').replace(/_/g, '');
+    }
+
+    const ageRaw = formData.get('age') || '';
+    const genderRaw = formData.get('gender') || '';
+    const regionRaw = formData.get('region') || '';
+    const firstName = formData.get('firstName') || '';
+
+    const age = normalizeAge(ageRaw);
+    const gender = normalizeSimple(genderRaw);
+    const region = normalizeSimple(regionRaw);
+
+    const lines = [];
+    questionAnswers.forEach((val, idx) => {
+        lines.push(`Question ${idx + 1}: ${val}`);
+    });
+    lines.push(`Age: ${age}`);
+    lines.push(`Gender: ${gender}`);
+    lines.push(`Region: ${region}`);
+    lines.push(`Name: ${firstName}`);
+    lines.push('');
+    lines.push("Click send and I'll take care of the rest :)");
+    lines.push('- Mark Travers, Ph.D.');
+
+    const subject = '<%= testName %> - Survey Responses';
+    const body = lines.join('\n');
+    const mailto = `mailto:mark.therapytips@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
+});
+</script> 

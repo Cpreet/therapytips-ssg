@@ -1,4 +1,4 @@
-<div class="rounded-lg p-4 bg-white">
+<div class="rounded-lg p-4 bg-white" data-question-index="<%= questionIndex %>">
     <div class="mb-3">
         <h3 class="text-base font-medium text-(--therapy-tips-text)">
             <%= questionIndex + 1 %>. <%= question %>
@@ -173,6 +173,16 @@
 
                             this.classList.add('bg-(--therapy-tips)', 'text-white');
                             this.classList.remove('bg-white', 'bg-gray-100');
+
+                            // Clear any error highlight on this question block
+                            const questionBlock = hiddenInput.closest('.rounded-lg');
+                            if (questionBlock) {
+                                questionBlock.style.outline = 'none';
+                                questionBlock.style.outlineOffset = '';
+                            }
+
+                            // Notify progress listeners
+                            document.dispatchEvent(new Event('questionAnswered'));
 
                             // Close dropdown
                             list.classList.add('hidden');
