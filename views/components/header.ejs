@@ -1,33 +1,30 @@
 <header class="flex flex-col items-center justify-center w-full lg:p-0 sticky top-0 z-50 bg-white shadow-md">
-    <div class="hidden lg:flex items-center justify-around w-fit">
+    <div class="hidden lg:flex items-center justify-around min-w-2/3 py-2">
         <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>">
             <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/TherapyTips-logo.svg" alt="TherapyTips" width="250" class="my-2 mx-auto" />
         </a>
         <nav
             class="flex items-center justify-center gap-10 max-h-20 px-10 py-2 bg-white w-fit text-(--therapy-tips) text-sm">
-            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>" class="hover:underline <%= page === 'landing' ? 'underline underline-offset-2 font-bold' : '' %>">
-                Home
-            </a>
-            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>articles" class="hover:underline <%= page === 'articles' ? 'underline underline-offset-2 font-bold' : '' %>">
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>articles" class="<%= page === 'articles' ? 'underline underline-offset-2 font-bold' : '' %> hover:underline">
                 Articles
             </a>
-            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>interviews" class="hover:underline <%= page === 'interviews' ? 'underline underline-offset-2 font-bold' : '' %>">
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>interviews" class="<%= page === 'interviews' ? 'underline underline-offset-2 font-bold' : '' %> hover:underline">
                 Interviews
             </a>
-            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>advice" class="hover:underline <%= page === 'advice' ? 'underline underline-offset-2 font-bold' : '' %>">
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>advice" class="<%= page === 'advice' ? 'underline underline-offset-2 font-bold' : '' %> hover:underline">
                 Advice
             </a>
-            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>personality-tests" class="hover:underline <%= page === 'personality-tests' ? 'underline underline-offset-2 font-bold' : '' %>">
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>personality-tests" class="<%= page === 'personality-tests' ? 'underline underline-offset-2 font-bold' : '' %> hover:underline">
                 Personality Tests
             </a>
             <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>mental-health-topics-a-z"
-                class="hover:underline">
+                class="<%= page === 'mental-health-topics-a-z' ? 'underline underline-offset-2 font-bold' : '' %> hover:underline">
                 Mental Health Topics
             </a>
-            <a href="https://www.awake-therapy.me/schedule-an-initial-consultation" class="hover:underline">
+            <a href="https://www.awake-therapy.me/schedule-an-initial-consultation" class="<%= page === 'find-a-therapist' ? 'underline underline-offset-2 font-bold' : '' %> hover:underline">
                 Find a Therapist
             </a>
-            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>search" class="hover:underline">
+            <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>search" class="<%= page === 'search' ? 'underline underline-offset-2 font-bold' : '' %> hover:underline">
                 <svg class="size-4 mb-0.5 text-(--therapy-tips)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
@@ -35,19 +32,19 @@
         </nav>
     </div>
     <div
-        class="lg:hidden flex items-center justify-between h-12 w-full p-4 bg-white sm:bg-(--therapy-tips) sticky top-0 z-50">
-        <svg class="size-6 mt-1 text-white sm:text-(--therapy-tips)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        class="lg:hidden flex items-center justify-between h-12 w-full p-4 bg-white sticky top-0 z-50">
+        <svg class="size-6 mt-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
         <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>">
-            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/TherapyTips-logo.svg" alt="TherapyTips" width="250" class="block sm:hidden" />
-            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/therapytips-inverted.svg" alt="TherapyTips" width="250" class="hidden sm:block" />
+            <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/TherapyTips-logo.svg" alt="TherapyTips" width="250"/>
+            <!-- <img src="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>assets/images/therapytips-inverted.svg" alt="TherapyTips" width="250" class="hidden sm:block" /> -->
         </a>
         <div class="relative text-left">
             <input type="checkbox" id="menu-toggle" class="hidden peer" />
             <label for="menu-toggle" class="inline-flex justify-between w-full rounded-md border py-2 text-[var(--therapy-tips)] text-sm font-medium outline-none border-none 
           hover:cursor-pointer focus:outline-none">
-                <svg class="size-6 mt-1 text-(--therapy-tips) sm:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg class="size-6 mt-1 text-(--therapy-tips)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </label>
@@ -55,10 +52,6 @@
             <nav class="absolute right-0 w-60 mt-1 origin-top-right bg-white divide-y divide-[var(--therapy-tips)]/40 rounded-md shadow-lg 
         opacity-0 invisible peer-checked:opacity-100 peer-checked:visible transition-all dur--ation-100 
         ease-in-out transform scale-95 peer-checked:scale-100 z-50 overflow-hidden border border-[var(--therapy-tips)]/40">
-                <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
-                    Home
-                </a>
                 <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>articles"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150">
                     Articles
@@ -89,7 +82,7 @@
                         <img src="https://unpkg.com/lucide-static@latest/icons/search.svg" class="size-3.5" />
                         Search
                     </span>
-                </a>:
+                </a>
             </nav>
         </div>
     </div>
