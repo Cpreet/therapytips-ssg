@@ -1,42 +1,37 @@
 <aside class="flex flex-col py-0.5 md:py-1 text-(--therapy-tips) w-full">
     <div class="hidden md:flex flex-col gap-4">
         <h1 class="text-4xl font-(family-name:--font-amaranth) font-bold tracking-wider">
-            JOURNAL
-            <br />
-            CLUB
+            NEWSLETTER
         </h1>
         <p class="text-sm font-light text-wrap text-(--therapy-tips-text)">
-            Join our
-            <strong class="font-bold">
-                weekly <br />
-                journal prompt
-            </strong>
-            mailing list
+            Need inspiration? Get the best of Therapytips.org delivered to your inbox every Monday.
         </p>
         <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>weekly-wisdom-signup">
             <button class="flex w-fit items-center gap-2 border-2 border-(--therapy-tips) rounded-md px-4 py-2 
       hover:bg-(--therapy-tips) hover:cursor-pointer hover:text-white transition-all duration-100">
-                MORE DETAILS <img src="https://unpkg.com/lucide-static@latest/icons/chevron-right.svg"
-                    class="size-5 mb-0.5" />
+                SIGN UP <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="size-4 mb-0.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
             </button>
-        </a>
+            </a>
     </div>
     <div class="block md:hidden">
         <a href="<%= process.env.BASE_URL %><%= process.env.BASE_DIR %>weekly-wisdom-signup" class="flex flex-col items-center rounded-lg 
         px-0.5 pt-0.5 w-full bg-(--therapy-tips-accent) group hover:bg-(--therapy-tips) transition-all duration-100">
             <h1 class="text-3xl font-(family-name:--font-amaranth) 
         font-bold tracking-wider bg-white w-full px-4 pt-4 rounded-t-md text-center">
-                JOURNAL CLUB!
+                NEWSLETTER!
             </h1>
             <p class="text-sm font-base text-(--therapy-tips-text) text-center px-4 pb-4 bg-white w-full">
-                Join our
-                <strong class="font-bold">'weekly journal prompt'</strong>
-                mailing list!
+                Need inspiration? Get the best of Therapytips.org delivered to your inbox every Monday.
             </p>
             <button class="flex w-fit items-center gap-2 p-3 font-bold bg-transparent text-white
           group-hover:cursor-pointer group-hover:text-white transition-all duration-100">
-                MORE DETAILS <img src="https://unpkg.com/lucide-static@latest/icons/chevron-right.svg"
-                    class="size-5 mb-0.5" />
+                SIGN UP <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-5 mb-0.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
             </button>
         </a>
     </div>
